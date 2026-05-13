@@ -23,7 +23,7 @@ export default function Dashboard() {
           </h1>
         </div>
         <Link href="/dashboard/agents/maya" className="btn-primary">
-          Configure Maya →
+          Open Maya →
         </Link>
       </div>
 
@@ -48,6 +48,60 @@ export default function Dashboard() {
       <div className="mt-1 text-xs text-slate2">
         $1M ARR goal — need {Math.max(0, Math.ceil((goal - arr) / GROWTH_TIER_ACV))} more
         Growth-tier customers at ${(GROWTH_TIER_ACV / 1000).toFixed(0)}K/yr ACV.
+      </div>
+
+      <div className="mt-12">
+        <h2 className="font-display text-2xl">Agent workspaces</h2>
+        <p className="mt-1 text-sm text-slate2">
+          Four agents are wired up end-to-end. Open any one to demo it to a prospect.
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
+          {[
+            {
+              slug: "maya",
+              name: "Maya",
+              role: "Storefront Concierge",
+              note: "Chat preview + config",
+              metric: "+12% CVR"
+            },
+            {
+              slug: "echo",
+              name: "Echo",
+              role: "Reviews & Reputation",
+              note: "Live reviews inbox",
+              metric: "+40 reviews/mo"
+            },
+            {
+              slug: "sage",
+              name: "Sage",
+              role: "Listings & SEO",
+              note: "Before/after rewrite diff",
+              metric: "+22% organic clicks"
+            },
+            {
+              slug: "pip",
+              name: "Pip",
+              role: "Customer Service",
+              note: "Live ticket inbox",
+              metric: "70% one-touch"
+            }
+          ].map((a) => (
+            <Link
+              key={a.slug}
+              href={`/dashboard/agents/${a.slug}`}
+              className="group rounded-2xl border border-ink/10 bg-white p-5 hover:border-ink"
+            >
+              <div className="flex items-center justify-between">
+                <div className="font-display text-2xl">{a.name}</div>
+                <div className="text-[10px] uppercase tracking-widest text-sage">Live</div>
+              </div>
+              <div className="text-xs text-slate2">{a.role}</div>
+              <div className="mt-4 text-xs text-ink/70">{a.note}</div>
+              <div className="mt-1 text-xs font-mono text-accent">{a.metric}</div>
+              <div className="mt-3 text-xs text-accent group-hover:underline">Open →</div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <div className="mt-12">

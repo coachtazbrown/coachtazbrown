@@ -34,6 +34,10 @@ export default function AgentPage({ params }: { params: { slug: string } }) {
                 <Link href="/demo" className="btn-primary">
                   Try Maya on the demo store →
                 </Link>
+              ) : ["echo", "sage", "pip"].includes(a.slug) ? (
+                <Link href={`/dashboard/agents/${a.slug}`} className="btn-primary">
+                  Try the live demo →
+                </Link>
               ) : (
                 <Link href="/demo" className="btn-primary">
                   Book a live demo →

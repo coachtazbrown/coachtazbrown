@@ -2,11 +2,9 @@ import Anthropic from "@anthropic-ai/sdk";
 import { searchProducts, getProduct, STORE } from "@/lib/store-catalog";
 import { findOrder } from "@/lib/orders";
 import { MAYA_DEFAULT_CONFIG, type MayaConfig } from "@/lib/maya-config";
+import { DEMO_MODE, MODEL, anthropic } from "@/lib/anthropic";
 
 export type ChatMessage = { role: "user" | "assistant"; content: string };
-
-const MODEL = process.env.MAYA_MODEL || "claude-sonnet-4-6";
-const DEMO_MODE = process.env.MAYA_DEMO_MODE === "true" || !process.env.ANTHROPIC_API_KEY;
 
 const TOOLS: Anthropic.Tool[] = [
   {
@@ -190,7 +188,7 @@ export async function runMaya(
     return { reply: demoReply(history), toolCalls: [] };
   }
 
-  const client = new Anthropic();
+  const client = anthropic();
   const sys = systemPrompt(config);
 
   const messages: Anthropic.MessageParam[] = history.map((m) => ({

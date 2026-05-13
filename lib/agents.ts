@@ -131,7 +131,7 @@ export const AGENTS: Agent[] = [
       "Multi-language (EN, ES, FR, DE, PT)",
       "Confidence-based handoff with full context"
     ],
-    status: "beta",
+    status: "live",
     color: "bg-accent/10 text-accent"
   },
   {
