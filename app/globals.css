@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background: #FAF7F2;
+  color: #11131A;
+}
+
+body {
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+.grain {
+  background-image: radial-gradient(rgba(17, 19, 26, 0.06) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+.ring-ink {
+  box-shadow: inset 0 0 0 1px #11131A;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition;
+}
+.btn-primary {
+  @apply btn bg-ink text-bone hover:bg-accent;
+}
+.btn-ghost {
+  @apply btn border border-ink/20 text-ink hover:border-ink;
+}
+
+.card {
+  @apply rounded-2xl border border-ink/10 bg-white p-6;
+}
+
+.kbd {
+  @apply rounded border border-ink/20 bg-bone px-1.5 py-0.5 font-mono text-[11px];
+}
