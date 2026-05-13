@@ -5,10 +5,22 @@ import { MAYA_DEFAULT_CONFIG } from "@/lib/maya-config";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
-export default function MayaChat({ embedded = false }: { embedded?: boolean }) {
+export default function MayaChat({
+  embedded = false,
+  previewId,
+  storeName,
+  greeting,
+  suggestedReplies
+}: {
+  embedded?: boolean;
+  previewId?: string;
+  storeName?: string;
+  greeting?: string;
+  suggestedReplies?: string[];
+}) {
   const [open, setOpen] = useState(embedded);
   const [messages, setMessages] = useState<Msg[]>([
-    { role: "assistant", content: MAYA_DEFAULT_CONFIG.greeting }
+    { role: "assistant", content: greeting || MAYA_DEFAULT_CONFIG.greeting }
   ]);
   const [input, setInput] = useState("");
   const [pending, setPending] = useState(false);
@@ -30,7 +42,7 @@ export default function MayaChat({ embedded = false }: { embedded?: boolean }) {
       const res = await fetch("/api/chat/maya", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ messages: next })
+        body: JSON.stringify({ messages: next, previewId })
       });
       const data = await res.json();
       setMessages((m) => [...m, { role: "assistant", content: data.reply }]);
@@ -61,7 +73,9 @@ export default function MayaChat({ embedded = false }: { embedded?: boolean }) {
           <div className="grid h-7 w-7 place-items-center rounded-full bg-ink text-bone">M</div>
           <div>
             <div className="font-semibold">Maya</div>
-            <div className="text-xs text-slate2">Marlow & Hart — online</div>
+            <div className="text-xs text-slate2">
+              {storeName || "Marlow & Hart"} — online
+            </div>
           </div>
         </div>
         {!embedded && (
@@ -92,7 +106,7 @@ export default function MayaChat({ embedded = false }: { embedded?: boolean }) {
       </div>
 
       <div className="flex flex-wrap gap-1.5 border-t border-ink/10 px-3 py-2">
-        {MAYA_DEFAULT_CONFIG.suggestedReplies.map((s) => (
+        {(suggestedReplies || MAYA_DEFAULT_CONFIG.suggestedReplies).map((s) => (
           <button
             key={s}
             onClick={() => send(s)}

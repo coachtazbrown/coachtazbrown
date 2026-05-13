@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AGENTS } from "@/lib/agents";
+import PreviewForm from "@/components/PreviewForm";
 
 export default function Home() {
   return (
@@ -20,9 +21,15 @@ export default function Home() {
               $1M–$5M GMV. Each agent replaces a real line item on your P&L. We install in a
               week and guarantee ROI in 30 days.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/demo" className="btn-primary">
-                Talk to Maya, our concierge →
+            <div className="mt-8 max-w-xl rounded-2xl border border-ink/15 bg-white p-4 shadow-sm">
+              <div className="mb-2 text-xs uppercase tracking-widest text-slate2">
+                Try it on your own store — 20 seconds, no signup
+              </div>
+              <PreviewForm />
+            </div>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <Link href="/demo" className="btn-ghost">
+                Or see the seeded demo →
               </Link>
               <Link href="/agents" className="btn-ghost">
                 Meet the team

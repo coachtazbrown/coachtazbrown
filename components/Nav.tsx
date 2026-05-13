@@ -15,15 +15,15 @@ export default function Nav() {
           <Link href="/pricing" className="hover:text-accent">
             Pricing
           </Link>
-          <Link href="/demo" className="hover:text-accent">
-            Live demo
+          <Link href="/preview" className="hover:text-accent">
+            Preview on your store
           </Link>
           <Link href="/dashboard" className="hover:text-accent">
             Dashboard
           </Link>
         </nav>
-        <Link href="/demo" className="btn-primary">
-          Try Maya →
+        <Link href="/preview" className="btn-primary">
+          See Maya on your store →
         </Link>
       </div>
     </header>
