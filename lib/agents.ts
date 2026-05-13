@@ -23,7 +23,7 @@ export const AGENTS: Agent[] = [
       "Maya chats with every visitor on your store, asks the right questions, recommends the right product, handles WISMO, returns, and sizing — and quietly hands off to a human when she should.",
     replaces: "Live chat tool + a part-time sales associate ($2,400/mo)",
     wedgeMetric: "+12% conversion on chat sessions",
-    startsAt: 497,
+    startsAt: 1500,
     integrations: ["Shopify", "Klaviyo", "Gorgias", "Recharge"],
     bullets: [
       "Reads your catalog every 6 hours and learns new arrivals",
@@ -43,7 +43,7 @@ export const AGENTS: Agent[] = [
       "Rex watches velocity, lead times, and seasonality across your SKUs, drafts purchase orders, and pings you on Slack when a top mover is about to stock out.",
     replaces: "An inventory analyst ($5,500/mo) or a $400/mo planning tool",
     wedgeMetric: "−30% stockouts, −18% dead stock",
-    startsAt: 497,
+    startsAt: 1500,
     integrations: ["Shopify", "Square", "Lightspeed", "Cin7"],
     bullets: [
       "Daily forecast per SKU, per location",
@@ -63,7 +63,7 @@ export const AGENTS: Agent[] = [
       "Nova reads campaign performance every morning, kills losing ads, scales winners, and drafts new creative briefs based on what's actually converting on your store.",
     replaces: "A media buyer or agency retainer ($1,500–$4,000/mo)",
     wedgeMetric: "−25% CAC in 60 days or your money back",
-    startsAt: 997,
+    startsAt: 1500,
     integrations: ["Meta Ads", "Google Ads", "TikTok Ads", "GA4", "Shopify"],
     bullets: [
       "Reallocates budget across campaigns daily",
@@ -83,7 +83,7 @@ export const AGENTS: Agent[] = [
       "Echo asks for reviews at the right moment, responds to every public review in your brand voice, and DMs you the moment a 1-star lands so you can fix it before it spreads.",
     replaces: "Yotpo + a VA in the Philippines ($800/mo)",
     wedgeMetric: "+40 reviews/month average across pilots",
-    startsAt: 497,
+    startsAt: 1500,
     integrations: ["Shopify", "Google Business", "Yelp", "Trustpilot"],
     bullets: [
       "Per-product review request flows",
@@ -103,7 +103,7 @@ export const AGENTS: Agent[] = [
       "Sage rewrites titles, descriptions, alt text, JSON-LD, and metafields across your catalog. Plugs into your existing taxonomy and your brand guide.",
     replaces: "A copywriter + an SEO agency ($3,000/mo combined)",
     wedgeMetric: "+22% organic clicks in 90 days",
-    startsAt: 497,
+    startsAt: 1500,
     integrations: ["Shopify", "Webflow", "WooCommerce", "Search Console"],
     bullets: [
       "Bulk-rewrite by collection, category, or tag",
@@ -123,7 +123,7 @@ export const AGENTS: Agent[] = [
       "Pip answers WISMO, processes returns, issues store credit within your policy, escalates the rest with a full summary and suggested reply.",
     replaces: "Gorgias auto-responder + the agent on top of it",
     wedgeMetric: "70% one-touch resolution rate",
-    startsAt: 997,
+    startsAt: 1500,
     integrations: ["Shopify", "Gorgias", "Zendesk", "Front", "Help Scout"],
     bullets: [
       "Refunds within policy — no human touch",
@@ -143,7 +143,7 @@ export const AGENTS: Agent[] = [
       "Vox picks up your store line, answers hours/location/availability questions, books appointments, and texts you a transcript of every call.",
     replaces: "An answering service ($300–$800/mo) or missed calls",
     wedgeMetric: "94% of calls answered after-hours",
-    startsAt: 297,
+    startsAt: 1500,
     integrations: ["Twilio", "Google Business", "Calendly", "Square Appointments"],
     bullets: [
       "Custom phone number or port your existing one",
@@ -163,7 +163,7 @@ export const AGENTS: Agent[] = [
       "Atlas posts to Google Business, answers questions on your listing, monitors competitors, and tells you exactly which keywords to chase next month.",
     replaces: "A local SEO agency ($1,200/mo)",
     wedgeMetric: "Top-3 map pack within 90 days for 4 of 5 pilots",
-    startsAt: 497,
+    startsAt: 1500,
     integrations: ["Google Business", "Apple Maps", "Bing Places", "Yelp"],
     bullets: [
       "Weekly Google posts with seasonal hooks",

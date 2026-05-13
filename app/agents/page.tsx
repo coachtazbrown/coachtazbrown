@@ -32,8 +32,8 @@ export default function AgentsIndex() {
               </div>
               <div className="text-right text-sm">
                 <div className="text-slate2">From</div>
-                <div className="font-display text-2xl">${a.startsAt}</div>
-                <div className="text-xs text-slate2">/mo</div>
+                <div className="font-display text-2xl">${a.startsAt.toLocaleString()}</div>
+                <div className="text-xs text-slate2">/mo · Foundation tier</div>
               </div>
             </div>
             <p className="mt-4 text-ink/85">{a.tagline}</p>

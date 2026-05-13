@@ -13,7 +13,7 @@ The whole app is one Next.js 14 codebase. It runs locally in two commands and de
 
 ## The business in one paragraph
 
-Eight AI agents — each named, each priced, each replacing a real line item on a retailer's P&L — sold as a managed service to Shopify specialty retailers. Three tiers (`$497 / $997 / $2,497`) plus a $2,500 setup fee. **~120 customers on Growth × 12 months ≈ $1.15M ARR**, reachable in 18–24 months with two founders, a Shopify App Store listing, and a Storeleads outbound motion.
+Eight AI agents — each named, each priced, each replacing a real line item on a retailer's P&L — sold as a managed service to Shopify specialty retailers. Four tiers: **Foundation $1,500 / Growth $3,500 / Command $8,500 / Enterprise $15K–$25K** + 5% revenue-share on Enterprise Nova+Maya. Pricing is anchored to replaced headcount, not to SaaS-tool comps. **~22 mixed-tier customers ≈ $1.1M ARR**, reachable in 12 months with two founders, a trade-show motion, and outbound to operators (not impulse buyers).
 
 The whole strategy is laid out in [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
 

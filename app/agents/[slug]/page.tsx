@@ -47,7 +47,13 @@ export default function AgentPage({ params }: { params: { slug: string } }) {
           <div className="md:col-span-5">
             <div className="card">
               <div className="text-xs uppercase tracking-widest text-slate2">From</div>
-              <div className="font-display text-5xl">${a.startsAt}<span className="text-base text-slate2">/mo</span></div>
+              <div className="font-display text-5xl">
+                ${a.startsAt.toLocaleString()}
+                <span className="text-base text-slate2">/mo</span>
+              </div>
+              <div className="mt-1 text-xs text-slate2">
+                Foundation tier — any 2 agents. <Link href="/pricing" className="underline">See tiers</Link>
+              </div>
               <div className="mt-4 grid grid-cols-1 gap-2 text-sm">
                 <div className="flex justify-between border-t border-ink/10 pt-2">
                   <span className="text-slate2">Replaces</span>

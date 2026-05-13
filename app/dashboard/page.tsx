@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { TENANTS, totalARR, totalAttributedRevenue30d } from "@/lib/tenants";
+import { TENANTS, totalARR, totalAttributedRevenue30d, GROWTH_TIER_ACV } from "@/lib/tenants";
 
 export const metadata = { title: "Operator dashboard — Retail Agent Co." };
 
@@ -46,7 +46,8 @@ export default function Dashboard() {
         />
       </div>
       <div className="mt-1 text-xs text-slate2">
-        $1M ARR goal — need {Math.ceil((goal - arr) / 12000)} more Growth-tier customers.
+        $1M ARR goal — need {Math.max(0, Math.ceil((goal - arr) / GROWTH_TIER_ACV))} more
+        Growth-tier customers at ${(GROWTH_TIER_ACV / 1000).toFixed(0)}K/yr ACV.
       </div>
 
       <div className="mt-12">

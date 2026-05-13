@@ -13,22 +13,27 @@ There are roughly **250,000 US Shopify merchants doing $500K–$10M GMV**. They 
 3. They are drowning in support tickets, returns, and WISMO.
 4. They cannot keep up with content (descriptions, reviews, posts, local SEO).
 
-We sell **eight named AI agents** that each solve one of those problems. Productized. Fixed-price. Cancel anytime. ROI-guaranteed.
+We sell **eight named AI agents** that each solve one of those problems. Productized. Priced like a team, not like a tool. Cancel anytime. ROI-guaranteed.
 
 ---
 
-## 2. The math to $1M ARR
+## 2. The math to $1M ARR — at the new pricing
 
-| Shape | Customers | ARPA / mo | ARR | Notes |
-|---|---|---|---|---|
-| A | 150 | $583 | $1.05M | Starter-heavy. Self-serve dominant. |
-| **B (target)** | **120** | **$800** | **$1.15M** | Growth-heavy. 1 closer can hit this in 18 mo. |
-| C | 75 | $1,167 | $1.05M | Scale-heavy. Higher touch, slower ramp. |
-| D | 30 | $2,778 | $1.0M | Multi-location chains. Long sales cycle, fat ACV. |
+The pricing is anchored to **replaced headcount and vendor spend**, not to "is this cheaper than Klaviyo." That collapses the customer count needed to $1M:
 
-Plus **services revenue**: ~$2,500 setup × 120 = **$300K one-time** in year 1.
+| Shape | Customers | Blended ARPA / mo | ARR |
+|---|---|---|---|
+| All Foundation ($1,500) | 56 | $1,500 | $1.0M |
+| All Growth ($3,500) | **24** | **$3,500** | **$1.0M** |
+| All Command ($8,500) | 10 | $8,500 | $1.0M |
+| All Enterprise ($18,000) | **5** | $18,000 | **$1.08M** |
+| **Realistic blend (40/40/15/5)** | **~22** | **$4,175** | **$1.1M** |
 
-**Total Y1 target: ~$1.4M revenue, ~$1.1M ARR exiting Y1.**
+Plus **services**: setup fees of $2.5K / $5K / $10K average to ~$5K × 22 = **$110K one-time** in year 1. Plus a **performance kicker** on Enterprise deals (5% of incremental revenue on Nova + Maya), worth roughly $20K–$60K per Enterprise logo per year.
+
+**Total Y1 target at this pricing: ~$1.3M revenue, ~$1.1M ARR exiting Y1, with ~22 customers** — not 120.
+
+This is the unlock. Twenty operators of small specialty retailers with budget authority, not 120 solo Shopify hobbyists comparing app reviews.
 
 ---
 
@@ -37,9 +42,9 @@ Plus **services revenue**: ~$2,500 setup × 120 = **$300K one-time** in year 1.
 | Rank | Segment | Why | Channel |
 |---|---|---|---|
 | 1 | **Shopify specialty retail $1M–$5M GMV** | API maturity, App Store distribution, broadest TAM | Shopify App Store + outbound via Storeleads |
-| 2 | **Independent jewelers, opticians, furniture** | High AOV, high margin, will pay $2K+/mo | Trade shows: JCK, Vision Expo, Las Vegas Market |
+| 2 | **Independent jewelers, opticians, furniture** | High AOV, high margin, fits Command tier | Trade shows: JCK, Vision Expo, Las Vegas Market |
 | 3 | **Cannabis dispensaries** | High WTP, compliance-driven, underserved | MJBizCon, dispensary-only Slack groups |
-| 4 | **Multi-location independents** (2–15 stores) | Big ACV per logo via franchise/co-op deals | Direct to franchisor / buying co-ops |
+| 4 | **Multi-location independents** (2–15 stores) | Enterprise-tier ACV via franchise/co-op deals | Direct to franchisor / buying co-ops |
 | 5 | **DTC brands $1M–$20M on Shopify Plus** | Fired their last agency, hungry | Klaviyo Partner network, eTail, Shoptalk |
 | 6 | **Regional grocers, liquor, convenience** | Low AI penetration | Lightspeed / NCR Aloha resellers |
 
@@ -49,53 +54,60 @@ Plus **services revenue**: ~$2,500 setup × 120 = **$300K one-time** in year 1.
 
 ## 4. The product wedge: eight named agents
 
-| Agent | Role | Replaces | Wedge metric | Starts at |
+| Agent | Role | Replaces | Wedge metric | Tier |
 |---|---|---|---|---|
-| **Maya** | Storefront Concierge | Live chat + a sales associate | +12% conversion | $497/mo |
-| **Rex** | Re-order & Demand | Inventory analyst | −30% stockouts | $497/mo |
-| **Nova** | Ad Spend | Media buyer ($1.5–4K/mo) | −25% CAC | $997/mo |
-| **Echo** | Reviews & Reputation | Yotpo + VA | +40 reviews/mo | $497/mo |
-| **Sage** | Listings & SEO | Copywriter + SEO agency | +22% organic clicks | $497/mo |
-| **Pip** | Customer Service | Gorgias agent | 70% one-touch | $997/mo |
-| **Vox** | Voice Receptionist | Answering service | 94% after-hours answered | $297/mo |
-| **Atlas** | Local SEO / GBP | Local SEO agency | Top-3 map pack | $497/mo |
+| **Maya** | Storefront Concierge | Live chat + a sales associate | +12% conversion | Foundation+ |
+| **Rex** | Re-order & Demand | Inventory analyst | −30% stockouts | Foundation+ |
+| **Nova** | Ad Spend | Media buyer ($1.5–4K/mo) | −25% CAC | Foundation+ |
+| **Echo** | Reviews & Reputation | Yotpo + VA | +40 reviews/mo | Foundation+ |
+| **Sage** | Listings & SEO | Copywriter + SEO agency | +22% organic clicks | Foundation+ |
+| **Pip** | Customer Service | Gorgias agent | 70% one-touch | Foundation+ |
+| **Vox** | Voice Receptionist | Answering service | 94% after-hours answered | Foundation+ |
+| **Atlas** | Local SEO / GBP | Local SEO agency | Top-3 map pack | Foundation+ |
 
-Each agent has: one integration to start, one wedge metric, one named persona, one fixed price, one 30-day refund.
+All eight agents are available at every tier — what changes is **how many** you get (2 / 5 / all 8) and **how much service** (self-serve / monthly tuning / dedicated strategist).
 
 ---
 
 ## 5. Pricing
 
-| Plan | $/mo | Includes |
-|---|---|---|
-| Starter | $497 | 2 agents, 1 store, self-serve |
-| **Growth** (target) | **$997** | 5 agents, 3 stores, monthly tuning + ROI report |
-| Scale | $2,497 | All 8 agents, unlimited stores, shared Slack, QBR |
+| Plan | $ / mo | Setup | Includes | Replaces ≈ |
+|---|---|---|---|---|
+| **Foundation** | $1,500 | $2,500 | Any 2 agents, 1 storefront, monthly report | $3–4K/mo |
+| **Growth** (target) | **$3,500** | $5,000 | Any 5 agents, up to 3 storefronts, monthly tuning, QBR, 30-day ROI guarantee | $8–12K/mo |
+| **Command** | $8,500 | $10,000 | All 8 agents, unlimited stores, dedicated strategist, shared Slack | $18–25K/mo |
+| **Enterprise** | $15K–$25K | custom | Multi-location, dedicated pod, named SLA, annual prepay | $40–80K/mo |
 
-Plus **$2,500 setup** (waived annual), **$200/mo per extra location**, **2 weeks free trial on Maya only**.
+**Enterprise performance kicker**: 5% of incremental revenue attributed to Nova + Maya over a 30-day pre-launch baseline. We share the upside; the customer can never lose.
+
+Setup is waived on annual prepay. No per-seat pricing. No surprise overages. One number on the contract.
 
 ---
 
-## 6. The 0→$1M roadmap (24 months)
+## 6. The 0→$1M roadmap (12 months — yes, twelve)
 
-| Quarter | Customers | ARR | Key moves |
+Because each customer is worth so much more, the road shortens dramatically.
+
+| Quarter | Customers | ARR run-rate | Key moves |
 |---|---|---|---|
-| Q1 | 5 design partners (free + comp swag) | $0 | Build Maya, ship to 5 jewelers. Capture every conversation for evals. |
-| Q2 | 15 paying | $180K | Launch Echo + Sage. List Maya on Shopify App Store. |
-| Q3 | 35 | $420K | Hire 1 closer. Launch Nova + Pip. First case studies. |
-| Q4 | 60 | $720K | Conference: JCK + Shoptalk. Land 2 multi-location deals. |
-| Y2 Q1 | 85 | $1.0M | Launch Vox + Atlas. Run first paid Meta campaign. |
-| Y2 Q2 | 120 | $1.4M | Hire CS lead. Run partner referral program. Pass $1M ARR comfortably. |
+| Q1 | 3 design partners at 50% off | $30K | Build Maya. Ship to 3 jewelers in Providence/Boston. Capture every conversation for evals. |
+| Q2 | 8 paying (mix) | $400K | Launch Echo + Sage. Land first Command-tier customer. First case study video. |
+| Q3 | 14 paying | $700K | Hire 1 closer + 1 strategist. Launch Nova + Pip. Speak at JCK or Shoptalk. |
+| **Q4** | **22 paying** | **$1.1M** | First Enterprise logo (multi-location). All 8 agents in market. |
+| Y2 Q1 | 32 | $1.6M | List on Shopify App Store. Hire CS lead. |
+| Y2 Q2 | 45 | $2.3M | Partner program live. Hire #2 closer. Cross $2M ARR. |
 
 ---
 
-## 7. Distribution channels (where the $1M comes from)
+## 7. Distribution channels (where the $1M comes from at this ARPA)
 
-1. **Shopify App Store** — Maya listed free (with paid managed upgrade). Average free-to-paid 8% at our price. Target: 250 installs/mo by Y2.
-2. **Outbound** — 200 Storeleads-filtered emails/day with a 60-second Loom showing Maya installed on the prospect's actual store. Target: 1.2% reply, 12% reply→demo, 28% demo→close = ~3 deals per 1,000 emails.
-3. **Partner channel** — 20% revshare with Shopify Plus agencies, Klaviyo Master partners, 3PLs.
-4. **Trade shows** — JCK (jewelers), Vision Expo (optical), MJBizCon (cannabis), Shoptalk, eTail. One booth + a Loom-on-arrival giveaway.
-5. **Content** — weekly "Retail Agent Benchmark" report (CVR, CAC, support volume by category). SEO + PR engine.
+1. **Direct outbound to operators** — Storeleads / Apollo, founder/COO targets at $1M–$5M Shopify stores. 60-second personalized Loom showing Maya on **their** store. **At $3,500 ARPA you only need 2 closes/month to hit plan** — these are 3–4 week sales cycles, not impulse buys.
+2. **Trade-show led** — JCK, Vision Expo, Shoptalk, NRF, MJBizCon. One booth + a "demo it on your store while we talk" magnet. One good show = 3 Command-tier logos.
+3. **Partner channel** — 20% revshare with Shopify Plus agencies, Klaviyo Master partners, 3PLs. Their merchants are pre-qualified.
+4. **Shopify App Store** — Maya listed as a paid app ($297/mo solo), used as a discovery wedge. Convert ~5% of installs to a Foundation+ managed plan via in-app upsell.
+5. **Content moat** — weekly "Retail Agent Benchmark" newsletter (CVR, CAC, support volume by category). SEO + PR engine.
+
+Note: at this ARPA, **paid Meta/Google ads are not the move**. Cost-per-lead won't pencil. Founder-led outbound + trade shows + partners do.
 
 ---
 
@@ -106,12 +118,13 @@ Plus **$2,500 setup** (waived annual), **$200/mo per extra location**, **2 weeks
 - **Vertical playbooks**: Maya for a jeweler is configured differently than Maya for a pet brand. The playbook is the product.
 - **Cross-store benchmarks**: "stores like yours convert at X% — you're at Y%." Data network effect.
 - **Brand**: each agent is a named character with a fixed role. Way stickier than a settings page called "AI Assistant".
+- **Headcount-replacement positioning**: customers compare us to a $5K media buyer, not a $99 Shopify app. That's a different decision and a different decision-maker.
 
 ---
 
 ## 9. The first 30 sales emails (template)
 
-Subject: `Maya at {{merchant.brand}}`
+Subject: `Maya at {{merchant.brand}}` 
 
 Body:
 
@@ -121,7 +134,7 @@ Body:
 >
 > Loom (90s): {{loom_url}}
 >
-> If she's worse than what you've got, I'll buy you lunch. If she's better, we install her on your store in a week for $497/mo. Cancel anytime.
+> If she's worse than what you've got, I'll buy you lunch. If she's better, we install her plus one other agent next week for $1,500/mo — less than what you're paying for your media buyer and your review tool combined. Cancel anytime; 30-day money-back if it doesn't move conversion.
 >
 > — {{founder_name}}
 
@@ -136,12 +149,13 @@ The Loom is the asset. Building the script that auto-generates per-merchant Loom
 - **Integration churn** — Shopify API changes will break things. Budget 1 engineer-day/week for plumbing.
 - **OpenAI / Shopify Magic / Klaviyo bundling AI for free** — defend with verticality, brand, and the human-in-the-loop guarantee.
 - **Hallucination liability** — guardrails enforce "never invent a product/price/promo." Tool calls are mandatory for any factual claim.
+- **ACV concentration** — at $1M with 22 customers, losing 3 hurts. Spread Enterprise logos across verticals.
 
 ---
 
 ## 11. Who I sell this agency to (exit options)
 
-When Retail Agent Co. is doing $5–15M ARR with 600+ logos, the natural buyers are:
+When Retail Agent Co. is doing $5–15M ARR with 80–150 logos, the natural buyers are:
 
 | Acquirer type | Examples | Why |
 |---|---|---|
@@ -151,13 +165,13 @@ When Retail Agent Co. is doing $5–15M ARR with 600+ logos, the natural buyers 
 | **PSP / commerce infra** | Stripe, Square, Lightspeed, Block | Want managed AI as an upsell to their payment book |
 | **3PL / fulfillment** | ShipBob, Stord, Flexport | Add managed AI to their merchant suite |
 
-Comparable deals: **Hawke Media** (acquired by Cherrytree, ~$60M), **Common Thread Collective**, **Power Digital** (PE-backed at $1B+). A productized agency at $5M ARR with 70% gross margin and a clean Shopify integration moat is a $30–80M outcome.
+Comparable deals: **Hawke Media** (acquired by Cherrytree, ~$60M), **Common Thread Collective**, **Power Digital** (PE-backed at $1B+). A productized agency at $5M ARR with 70% gross margin and a clean Shopify integration moat is a **$30–80M outcome**. With Enterprise revenue share contracts in the book, the multiple is closer to a SaaS comp (6–10× ARR) than to an agency comp (1–2× revenue).
 
 ---
 
 ## 12. Operating cadence
 
-- **Weekly**: ship one prompt or integration. Run evals. Send one outbound batch.
-- **Monthly**: ROI reports go out to every tenant. New benchmark report published.
-- **Quarterly**: ICP review (are we still selling to jewelers? expand?), pricing review, churn post-mortem.
+- **Weekly**: ship one prompt or integration. Run evals. Send one outbound batch. One Loom per prospect.
+- **Monthly**: ROI reports go out to every tenant. New benchmark report published. Pricing review.
+- **Quarterly**: ICP review (are we still selling to jewelers? expand?), churn post-mortem, prompt-eval regression run.
 - **Yearly**: new agent launch. Eight today, ten next year.

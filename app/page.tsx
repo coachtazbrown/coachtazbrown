@@ -12,13 +12,13 @@ export default function Home() {
               retailers
             </div>
             <h1 className="font-display text-5xl leading-[1.05] tracking-tight md:text-7xl">
-              Hire eight AI employees <br className="hidden md:block" />
-              for less than <span className="italic text-accent">one</span> part-time clerk.
+              An eight-person AI team, <br className="hidden md:block" />
+              for the price of <span className="italic text-accent">one</span> mid-level hire.
             </h1>
             <p className="mt-6 max-w-xl text-lg text-slate2">
               Retail Agent Co. builds productized AI agents for Shopify specialty retailers doing
-              $1M–$5M GMV. We install in a week. We guarantee ROI in 30 days. You can fire us in
-              one click.
+              $1M–$5M GMV. Each agent replaces a real line item on your P&L. We install in a
+              week and guarantee ROI in 30 days.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/demo" className="btn-primary">
@@ -112,7 +112,7 @@ export default function Home() {
                 <div className="text-sm text-slate2">{a.role}</div>
                 <p className="mt-3 text-sm text-ink/80">{a.tagline}</p>
                 <div className="mt-4 flex items-center justify-between text-xs text-slate2">
-                  <span>From ${a.startsAt}/mo</span>
+                  <span>From ${a.startsAt.toLocaleString()}/mo</span>
                   <span className="group-hover:text-accent">Meet {a.name} →</span>
                 </div>
               </Link>
@@ -148,11 +148,11 @@ export default function Home() {
             <table className="mt-4 w-full text-sm">
               <tbody>
                 {[
-                  ["Month 1", "Maya + Echo installed, baseline measured", "$2,500 setup"],
-                  ["Month 2", "First ROI report. Add Sage for SEO.", "$997/mo"],
-                  ["Month 3", "Nova on ads. CAC down 18%.", "$1,994/mo"],
-                  ["Month 6", "Pip live, 70% of tickets self-serve.", "$2,497/mo"],
-                  ["Month 12", "All 8 agents. Replaced 3 vendors + 1.5 FTE.", "$2,497/mo"]
+                  ["Month 1", "Maya + Echo installed, baseline measured", "$1,500/mo + $2.5K setup"],
+                  ["Month 2", "First ROI report. CVR up 8%.", "$1,500/mo"],
+                  ["Month 3", "Move to Growth. Add Sage + Nova.", "$3,500/mo"],
+                  ["Month 6", "Pip live. 70% of tickets self-serve.", "$3,500/mo"],
+                  ["Month 12", "Move to Command. All 8 agents.", "$8,500/mo"]
                 ].map(([m, what, cost]) => (
                   <tr key={m} className="border-t border-ink/10">
                     <td className="py-3 pr-2 font-mono text-xs text-slate2">{m}</td>
@@ -163,9 +163,9 @@ export default function Home() {
               </tbody>
             </table>
             <div className="mt-5 rounded-xl bg-bone p-4 text-sm text-slate2">
-              Net replaced cost in year 1:
-              <span className="ml-2 font-display text-xl text-ink">~$84,000</span>
-              <span className="ml-1">/ Retail Agent Co. cost: ~$28,500.</span>
+              What you'd otherwise spend on the same output:
+              <span className="ml-2 font-display text-xl text-ink">~$165,000</span>
+              <span className="ml-1">/ Retail Agent Co. year 1: ~$54,000.</span>
             </div>
           </div>
         </div>
