@@ -54,7 +54,7 @@ The Partner is **Nia**: a Black woman strategist and red-team coach, modeled as 
 Voice degrades gracefully, exactly like the agent's demo mode:
 
 - **No setup:** speech-to-text and text-to-speech run in the browser (Web Speech API). The spoken voice is whatever female English voice the device offers — quality and character vary by OS/browser.
-- **The real voice:** set `ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` (pick a Black female voice from the [ElevenLabs Voice Library](https://elevenlabs.io/)). `POST /api/voice/speak` then streams that consistent voice; if the key is missing or the call fails, it transparently returns to the browser voice.
+- **The real voice:** set `ELEVENLABS_API_KEY` and `POST /api/voice/speak` streams a consistent cloud voice. The pinned default is **Aria** (`9BWtsMINqrJLrRacOk9x`), an ElevenLabs premade voice — warm, expressive, mature American female — that resolves on any account with a key, no extra setup. ElevenLabs doesn't label premade voices by ethnicity; for a voice explicitly described as African American, open the [ElevenLabs Voice Library](https://elevenlabs.io/), add one to your account, and set `ELEVENLABS_VOICE_ID` to its voice ID — that override always wins. If the key is missing or the call fails, it transparently returns to the browser voice.
 
 Speech-to-text uses the browser's `SpeechRecognition` (Chrome/Edge/Safari); the mic button is hidden where unsupported.
 

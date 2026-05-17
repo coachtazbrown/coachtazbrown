@@ -6,10 +6,13 @@ export const dynamic = "force-dynamic";
 
 const Schema = z.object({ text: z.string().min(1).max(3000) });
 
-// Default to an ElevenLabs stock female voice. Override ELEVENLABS_VOICE_ID
-// with the voice you picked from the ElevenLabs Voice Library (see README) to
-// get the specific, consistent Black female voice.
-const DEFAULT_VOICE_ID = "21m00Tcm4TlvDq8ikWAM";
+// Pinned default: "Aria" — an ElevenLabs premade voice (resolves on any
+// account with a key, no Voice Library step). Warm, expressive, mature
+// American female — the best stock fit for Nia's register. ElevenLabs does
+// not label premade voices by ethnicity; for a voice explicitly described as
+// African American, browse the Voice Library and set ELEVENLABS_VOICE_ID
+// (see README — that override always wins).
+const DEFAULT_VOICE_ID = "9BWtsMINqrJLrRacOk9x";
 const DEFAULT_MODEL_ID = "eleven_multilingual_v2";
 
 // Strip the bits that read badly aloud (markdown bold, arrows, bullets).
