@@ -34,7 +34,7 @@ export default function AgentPage({ params }: { params: { slug: string } }) {
                 <Link href="/demo" className="btn-primary">
                   Try Maya on the demo store →
                 </Link>
-              ) : ["echo", "sage", "pip"].includes(a.slug) ? (
+              ) : ["echo", "sage", "pip", "redteam"].includes(a.slug) ? (
                 <Link href={`/dashboard/agents/${a.slug}`} className="btn-primary">
                   Try the live demo →
                 </Link>
@@ -106,7 +106,7 @@ export default function AgentPage({ params }: { params: { slug: string } }) {
 
       <section>
         <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2 className="font-display text-3xl tracking-tight md:text-4xl">The other seven</h2>
+          <h2 className="font-display text-3xl tracking-tight md:text-4xl">The rest of the roster</h2>
           <div className="mt-6 grid gap-3 md:grid-cols-4">
             {AGENTS.filter((x) => x.slug !== a.slug).map((x) => (
               <Link

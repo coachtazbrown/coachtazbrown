@@ -173,6 +173,26 @@ export const AGENTS: Agent[] = [
     ],
     status: "live",
     color: "bg-sage/15 text-sage"
+  },
+  {
+    slug: "redteam",
+    name: "Red Teaming Partner",
+    role: "Strategy Red-Team Coach",
+    tagline: "Stress-tests the plan before reality does — and turns every finding into your next engagement.",
+    description:
+      "Taz Brown's AI business partner for the red-teaming practice. It tells you exactly which adversarial move to run on a client's strategy, how to facilitate it without becoming the consultant who has all the answers, and how each exercise ladders into a retained Taz Brown Strategies relationship.",
+    replaces: "An external strategy consultant on retainer ($8,000/mo)",
+    wedgeMetric: "Kills ~1 in 3 doomed initiatives before launch",
+    startsAt: 1500,
+    integrations: ["Notion", "Slack", "Google Docs", "Miro"],
+    bullets: [
+      "The full red-teaming canon, 1587 → today, on call in the room",
+      "Ready-to-run premortem and assumption-check facilitation scripts",
+      "Coaches you to coach the client — never hands over the answer",
+      "Every recommendation ends at the next paid step on the value ladder"
+    ],
+    status: "live",
+    color: "bg-accent/10 text-accent"
   }
 ];
 

@@ -53,7 +53,7 @@ export default function Dashboard() {
       <div className="mt-12">
         <h2 className="font-display text-2xl">Agent workspaces</h2>
         <p className="mt-1 text-sm text-slate2">
-          Four agents are wired up end-to-end. Open any one to demo it to a prospect.
+          Five agents are wired up end-to-end. Open any one to demo it to a prospect.
         </p>
         <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
           {[
@@ -84,6 +84,13 @@ export default function Dashboard() {
               role: "Customer Service",
               note: "Live ticket inbox",
               metric: "70% one-touch"
+            },
+            {
+              slug: "redteam",
+              name: "Red Teaming Partner",
+              role: "Strategy Red-Team Coach",
+              note: "Live partner chat + lineage",
+              metric: "1 in 3 bets killed early"
             }
           ].map((a) => (
             <Link

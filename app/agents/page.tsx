@@ -8,11 +8,11 @@ export default function AgentsIndex() {
     <div className="mx-auto max-w-6xl px-6 py-16">
       <div className="text-xs uppercase tracking-widest text-slate2">The roster</div>
       <h1 className="mt-2 font-display text-5xl tracking-tight md:text-6xl">
-        Eight agents. One unified back-office.
+        Nine agents. One unified back-office.
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-slate2">
         Each agent is productized, priced, and shipped with a single integration in under 5 days.
-        Pick one. Pick three. Pick all eight on Scale.
+        Pick one. Pick three. Pick the whole roster on Scale.
       </p>
 
       <div className="mt-12 grid gap-5 md:grid-cols-2">
