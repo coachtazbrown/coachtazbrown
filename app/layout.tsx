@@ -4,10 +4,10 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Retail Agent Co — AI employees for specialty retailers",
+  title: "Taz Brown Strategies — we red-team your strategy before reality does",
   description:
-    "Eight productized AI agents built for Shopify specialty retailers doing $1M–$5M GMV. Live in a week. Cancel anytime.",
-  metadataBase: new URL("https://retail-agent.co")
+    "A red-teaming practice for founders and leadership teams. Premortems, assumption checks, war-games, and a Red Teaming Partner that coaches you through every one — the canon, 1587 to today.",
+  metadataBase: new URL("https://tazbrownstrategies.com")
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

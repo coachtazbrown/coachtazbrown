@@ -11,13 +11,13 @@ export default function RedTeamPage() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-10">
       <div className="flex items-center gap-2 text-sm text-slate2">
-        <Link href="/dashboard" className="hover:text-ink">
-          Dashboard
+        <Link href="/" className="hover:text-ink">
+          Taz Brown Strategies
         </Link>
         <span>/</span>
-        <span>Red Teaming Partner</span>
+        <span>The Red Teaming Partner</span>
       </div>
-      <h1 className="mt-2 font-display text-4xl tracking-tight">Red Teaming Partner</h1>
+      <h1 className="mt-2 font-display text-4xl tracking-tight">The Red Teaming Partner</h1>
       <p className="mt-2 max-w-2xl text-slate2">{cfg.positioning}</p>
 
       <div className="mt-8 grid gap-4 md:grid-cols-4">

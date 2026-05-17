@@ -7,55 +7,49 @@ export default function Footer() {
         <div>
           <div className="flex items-center gap-2 font-display text-xl">
             <span className="inline-block h-2.5 w-2.5 rounded-full bg-ink" />
-            Retail Agent Co.
+            Taz Brown Strategies
           </div>
           <p className="mt-3 max-w-xs text-sm text-slate2">
-            Eight named AI agents that work the floor, the inbox, and the phone for specialty
-            retailers.
+            We red-team your strategy before reality does — so the plan survives contact
+            with the market, the competitor, and the room.
           </p>
         </div>
         <div className="text-sm">
-          <div className="mb-3 font-semibold">Agents</div>
+          <div className="mb-3 font-semibold">The work</div>
           <ul className="space-y-2 text-slate2">
             <li>
-              <Link href="/agents/maya">Maya — Storefront Concierge</Link>
+              <Link href="/method">The method — 1587 to today</Link>
             </li>
             <li>
-              <Link href="/agents/rex">Rex — Re-order & Demand</Link>
+              <Link href="/workspace">The Red Teaming Partner</Link>
             </li>
             <li>
-              <Link href="/agents/nova">Nova — Ad Spend</Link>
-            </li>
-            <li>
-              <Link href="/agents">See all eight →</Link>
+              <Link href="/pricing">Engagements</Link>
             </li>
           </ul>
         </div>
         <div className="text-sm">
-          <div className="mb-3 font-semibold">For retailers</div>
+          <div className="mb-3 font-semibold">The practice</div>
           <ul className="space-y-2 text-slate2">
             <li>
-              <Link href="/pricing">Pricing</Link>
+              <Link href="/dashboard">Book of business</Link>
             </li>
             <li>
-              <Link href="/demo">Live demo</Link>
-            </li>
-            <li>
-              <Link href="/agents">ROI calculator</Link>
+              <Link href="/pricing">The value ladder</Link>
             </li>
           </ul>
         </div>
         <div className="text-sm">
-          <div className="mb-3 font-semibold">Company</div>
+          <div className="mb-3 font-semibold">Principle</div>
           <ul className="space-y-2 text-slate2">
-            <li>30-day ROI guarantee</li>
-            <li>Cancel anytime</li>
-            <li>SOC 2 (in progress)</li>
+            <li>Coach, don&apos;t consult</li>
+            <li>Diagnose structure, never people</li>
+            <li>A finding with no owner was theatre</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-ink/10 px-6 py-5 text-center text-xs text-slate2">
-        © {new Date().getFullYear()} Retail Agent Co. — Built for Shopify specialty retailers.
+        © {new Date().getFullYear()} Taz Brown Strategies — adversarial thinking, installed.
       </div>
     </footer>
   );

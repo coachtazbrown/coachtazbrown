@@ -1,89 +1,84 @@
 import Link from "next/link";
+import { VALUE_LADDER } from "@/lib/redteam-knowledge";
 
-export const metadata = { title: "Pricing — Retail Agent Co." };
+export const metadata = { title: "Engagements — Taz Brown Strategies" };
 
 const TIERS = [
   {
-    name: "Foundation",
-    price: 1500,
-    setup: 2500,
-    blurb: "Any 2 agents. One storefront. The wedge.",
-    cta: "Start with Maya + Echo",
+    name: "Land",
+    price: "$4,500",
+    cadence: "one-off",
+    blurb: "90-minute Key Assumptions Check or live Premortem on one real, live decision.",
+    cta: "Bring a decision",
     features: [
-      "Any 2 agents from the catalog",
-      "1 Shopify / Square / Lightspeed storefront",
-      "Monthly performance report",
-      "Slack handoff channel",
-      "Cancel any time"
+      "One facilitated session on a live, irreversible bet",
+      "The assumption table or premortem action list — owned, dated",
+      "30-day debrief of the action owners",
+      "A finding the client can't unsee"
     ],
-    note: "Replaces ~$3–4K/mo of tools + part-time roles.",
+    note: "The paid trial. It almost always exposes work worth a retainer.",
     popular: false,
-    badge: null
+    badge: null,
+    converts: VALUE_LADDER[0].converts
   },
   {
-    name: "Growth",
-    price: 3500,
-    setup: 5000,
-    blurb: "Any 5 agents. Up to 3 storefronts. The standard.",
-    cta: "Book a Growth call",
+    name: "Diagnose",
+    price: "$4,000",
+    cadence: "/mo · 3-month",
+    blurb: "Decision-quality audit: Groupthink scorecard + assumption table on the last three big bets.",
+    cta: "Scope the audit",
     features: [
-      "Any 5 agents from the catalog",
-      "Up to 3 storefronts",
-      "Monthly tuning call with a strategist",
-      "Custom brand voice locked from your style guide",
-      "Quarterly business review",
-      "30-day ROI guarantee"
+      "Janis groupthink symptom scorecard",
+      "Assumption autopsy of three recent decisions",
+      "Structural fixes installed, then re-measured",
+      "Artifacts leadership circulates internally"
     ],
-    note: "Replaces ~$8–12K/mo of tools, agencies, and headcount.",
+    note: "Reframes a one-off win as a systemic gap worth fixing on a cadence.",
     popular: true,
-    badge: "Most retailers"
+    badge: "Where most clients land",
+    converts: VALUE_LADDER[1].converts
   },
   {
-    name: "Command",
-    price: 8500,
-    setup: 10000,
-    blurb: "All 8 agents. Unlimited storefronts. Shared Slack.",
-    cta: "Book a Command demo",
+    name: "Cadence",
+    price: "$6,500–9,000",
+    cadence: "/mo · retained",
+    blurb: "Quarterly war-game or Team B on each roadmap milestone, facilitated by Taz Brown Strategies.",
+    cta: "Talk cadence",
     features: [
-      "All 8 agents — unlimited use",
-      "Unlimited storefronts under one brand",
-      "Dedicated strategist + shared Slack channel",
-      "Custom workflows + private cross-store benchmarks",
-      "Bi-weekly tuning, quarterly QBR",
-      "Priority integration requests"
+      "War-game / Team B tied to the client's planning rhythm",
+      "Red cell facilitation — you stay the White referee",
+      "Decision-quality tracked separately from outcomes",
+      "You become part of how they decide"
     ],
-    note: "Replaces ~$18–25K/mo across vendors and headcount.",
+    note: "Recurring revenue anchored to the client's own roadmap.",
     popular: false,
-    badge: null
+    badge: null,
+    converts: VALUE_LADDER[2].converts
   }
 ];
 
-const ENTERPRISE = {
-  range: "$15,000–$25,000",
+const PARTNER = {
+  range: "$14,000–$22,000",
   features: [
-    "Multi-location independents, regional chains, franchise networks",
-    "Dedicated pod: strategist + ML engineer + CSM",
-    "5% performance kicker on incremental revenue attributed to Nova + Maya, measured against a 30-day pre-launch baseline",
-    "White-glove implementation, on-site training, named contacts",
-    "99.9% SLA, dedicated infra, custom data residency",
-    "SOC 2 evidence package and BAA on request"
+    "Stand up the client's internal red cell — charter, training, air cover",
+    "Taz as the standing external partner and the leader's coach",
+    "Irreversible decisions gated behind a mandatory red-team pass",
+    "Re-charter every two quarters so the cell can't ossify",
+    "Multi-year, highest-margin, referral-generating",
+    "Client wins become case studies and the next logos"
   ]
 };
-
-function dollars(n: number) {
-  return n.toLocaleString("en-US");
-}
 
 export default function Pricing() {
   return (
     <div className="mx-auto max-w-6xl px-6 py-16">
-      <div className="text-xs uppercase tracking-widest text-slate2">Pricing</div>
+      <div className="text-xs uppercase tracking-widest text-slate2">Engagements</div>
       <h1 className="mt-2 font-display text-5xl tracking-tight md:text-6xl">
-        Priced like a team. Performs like one.
+        Priced like a partner. Compounds like one.
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-slate2">
-        Each tier replaces real headcount and vendor spend on your P&L. Month-to-month. Setup
-        waived on annual prepay. ROI guaranteed in 30 days or your money back.
+        Four rungs. Each one is engineered so the client asks for the next — we grow on wins,
+        not sales pressure. Start at Land; most relationships are renewing within two quarters.
       </p>
 
       <div className="mt-12 grid gap-5 md:grid-cols-3">
@@ -104,14 +99,15 @@ export default function Pricing() {
                 </div>
               )}
             </div>
-            <div className="mt-3 font-display text-5xl">
-              ${dollars(t.price)}
-              <span className={`text-base ${t.popular ? "text-bone/60" : "text-slate2"}`}>/mo</span>
+            <div className="mt-3 font-display text-4xl">
+              {t.price}
+              <span className={`ml-1 text-base ${t.popular ? "text-bone/60" : "text-slate2"}`}>
+                {t.cadence}
+              </span>
             </div>
-            <div className={`mt-1 text-xs ${t.popular ? "text-bone/60" : "text-slate2"}`}>
-              + ${dollars(t.setup)} setup (waived on annual)
-            </div>
-            <p className={`mt-3 text-sm ${t.popular ? "text-bone/80" : "text-ink/80"}`}>{t.blurb}</p>
+            <p className={`mt-3 text-sm ${t.popular ? "text-bone/80" : "text-ink/80"}`}>
+              {t.blurb}
+            </p>
             <ul className="mt-5 space-y-2 text-sm">
               {t.features.map((f) => (
                 <li key={f} className="flex gap-2">
@@ -125,10 +121,10 @@ export default function Pricing() {
                 t.popular ? "bg-bone/10 text-bone/80" : "bg-bone text-slate2"
               }`}
             >
-              {t.note}
+              {t.note} <span className="text-accent">{t.converts}</span>
             </div>
             <Link
-              href="/demo"
+              href="/workspace"
               className={`mt-6 ${
                 t.popular ? "btn bg-accent2 text-ink hover:bg-bone" : "btn-primary"
               }`}
@@ -142,21 +138,23 @@ export default function Pricing() {
       <div className="mt-10 rounded-3xl border border-ink/10 bg-bone p-8">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <div className="text-xs uppercase tracking-widest text-slate2">Enterprise</div>
+            <div className="text-xs uppercase tracking-widest text-slate2">
+              Install &amp; Partner
+            </div>
             <div className="mt-1 font-display text-3xl">
-              {ENTERPRISE.range}
-              <span className="text-base text-slate2">/mo · annual</span>
+              {PARTNER.range}
+              <span className="text-base text-slate2">/mo · multi-year</span>
             </div>
             <div className="mt-1 text-sm text-slate2">
-              + 5% of incremental revenue attributed to Nova + Maya
+              The top rung — we install and run your red-teaming capability
             </div>
           </div>
-          <Link href="/demo" className="btn-primary">
-            Talk to founders →
+          <Link href="/workspace" className="btn-primary">
+            Talk to Taz →
           </Link>
         </div>
         <ul className="mt-6 grid gap-2 text-sm md:grid-cols-2">
-          {ENTERPRISE.features.map((f) => (
+          {PARTNER.features.map((f) => (
             <li key={f} className="flex gap-2">
               <span className="text-accent">✓</span>
               <span>{f}</span>
@@ -167,20 +165,19 @@ export default function Pricing() {
 
       <div className="mt-16 grid gap-6 md:grid-cols-2">
         <div className="rounded-3xl border border-ink/10 bg-white p-8">
-          <div className="font-display text-2xl">Why we charge like a firm, not a tool</div>
+          <div className="font-display text-2xl">Why we don&apos;t oversell ceremony</div>
           <p className="mt-3 text-slate2">
-            Each agent replaces a real line item — a media buyer, a copywriter, an inventory
-            analyst, a support rep. The math we underwrite isn't "is this cheaper than a SaaS
-            tool" — it's "is this cheaper than the salary, the freelancer, or the agency I'd
-            otherwise hire." Across our book, the answer is 3–5× cheaper for the same output.
+            If a 90-minute assumptions check solves it, we say so — even though a war-game bills
+            more. Credibility compounds into more clients than any single invoice. The cheapest
+            move that works is always the one we recommend first.
           </p>
         </div>
         <div className="rounded-3xl border border-ink/10 bg-white p-8">
-          <div className="font-display text-2xl">The 30-day ROI guarantee</div>
+          <div className="font-display text-2xl">A finding with no owner was theatre</div>
           <p className="mt-3 text-slate2">
-            Before we turn an agent on, we baseline the metric it owns (conversion, CAC,
-            stockouts, ticket volume). If 30 days in it hasn't moved the needle in your favor we
-            refund the month and help you offboard. We've refunded twice in two years.
+            Every engagement ends with the dangerous items converted into owned actions with
+            dates — and a debrief on the calendar. We measure decision quality, not luck. That
+            debrief is also, by design, the bridge to the next rung.
           </p>
         </div>
       </div>

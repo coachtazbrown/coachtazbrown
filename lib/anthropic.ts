@@ -1,8 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk";
 
 // Single source of truth for "do we have a real key + should we call Claude?"
-// Every agent imports DEMO_MODE from here so the four agents behave consistently
-// during sales demos when ANTHROPIC_API_KEY is absent.
+// The Red Teaming Partner imports DEMO_MODE from here so it runs a believable,
+// genuinely useful fallback when ANTHROPIC_API_KEY is absent.
 export const DEMO_MODE =
   process.env.AGENTS_DEMO_MODE === "true" ||
   process.env.MAYA_DEMO_MODE === "true" ||

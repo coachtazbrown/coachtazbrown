@@ -1,8 +1,8 @@
 {
-  "name": "retail-agent-co",
+  "name": "taz-brown-strategies",
   "version": "0.1.0",
   "private": true,
-  "description": "Retail Agent Co — productized AI agents for Shopify specialty retailers",
+  "description": "Taz Brown Strategies — a red-teaming practice and its AI Red Teaming Partner",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
