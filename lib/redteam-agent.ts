@@ -242,8 +242,52 @@ function fmtTechnique(t: RedTeamTechnique): string {
   ].join("\n");
 }
 
+// A bare greeting or presence-ping should get a real hello in Nia's voice,
+// not a framework dump. Returns null when the message has actual substance,
+// so this never swallows a real question that happens to open with "hey".
+function smallTalkReply(raw: string): string | null {
+  const s = raw.trim().toLowerCase().replace(/[!.?,]+$/g, "").trim();
+  if (!s) return "Right here. Who's the client, and what decision are they about to lock in?";
+  if (s.split(/\s+/).length > 7 || s.length > 48) return null;
+
+  const substantive =
+    /(client|decision|launch|plan|pivot|strateg|premortem|assumption|war.?game|team|board|churn|pricing|retain|engagement|ladder|acqui|raise|hir(e|ing)|market|deal|forecast)/;
+  if (substantive.test(s)) return null;
+
+  const greet = /\b(h+i+|h+e+y+|h+e+l+o+|hello|yo|hiya|heya|howdy|sup|wassup|hola|aloha|greetings|gm)\b/;
+  const morning = /\bgood (morning|afternoon|evening|day)\b|\b(mornin|evenin)g?\b/;
+  const how =
+    /\b(how are you|how are ya|how'?s it going|how you doing|how ya doing|you good|how have you been|how's life)\b/;
+  const presence = /\b(you there|are you there|you up|knock knock|test|testing|you with me|still there|hello\?*)\b/;
+  const thanks = /\b(thanks|thank you|appreciate it|ty)\b/;
+  const nameOnly = /^(h+e+y+ |h+i+ |hello |yo )?nia$/;
+
+  const isGreet = greet.test(s) || morning.test(s) || nameOnly.test(s);
+  const isHow = how.test(s);
+  const isPresence = presence.test(s) || /^nia$/.test(s);
+  const isThanks = thanks.test(s);
+  if (!isGreet && !isHow && !isPresence && !isThanks) return null;
+
+  if (isThanks)
+    return "Anytime. When you've got a client and a decision on the table, come find me — that's when I earn my keep.";
+
+  const openers = [
+    "Hey — good to see you. So talk to me: who's the client, and what's the decision they're about to lock in?",
+    "I'm here. Let's not warm up too long — give me the client and the call they're about to make, and I'll tell you exactly what to run.",
+    "Hey, Taz. I'm listening. Whose strategy are we pressure-testing today, and what's the decision underneath it?",
+    "Right here with you. Tell me the client and the decision that's keeping you up, and we'll get into it.",
+    "Good — let's work. Who's the client, what are they about to commit to, and how hard is it to undo?"
+  ];
+  let reply = openers[raw.length % openers.length];
+  if (isHow) reply = "I'm sharp and ready — I don't get tired, that's the point of me. " + reply;
+  else if (isPresence && !isGreet) reply = "Right here. " + reply;
+  return reply;
+}
+
 function demoReply(history: ChatMessage[]): string {
   const last = history.filter((m) => m.role === "user").pop()?.content ?? "";
+  const small = smallTalkReply(last);
+  if (small) return small;
   const s = last.toLowerCase();
 
   if (s.includes("premortem")) {
