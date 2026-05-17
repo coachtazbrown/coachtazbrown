@@ -17,8 +17,15 @@ export default function RedTeamPage() {
         <span>/</span>
         <span>The Red Teaming Partner</span>
       </div>
-      <h1 className="mt-2 font-display text-4xl tracking-tight">The Red Teaming Partner</h1>
+      <h1 className="mt-2 font-display text-4xl tracking-tight">
+        {cfg.persona.name} — the Red Teaming Partner
+      </h1>
       <p className="mt-2 max-w-2xl text-slate2">{cfg.positioning}</p>
+      <p className="mt-2 max-w-2xl text-sm text-slate2">
+        Tap the mic and talk to her like a co-founder; she talks back. Toggle her voice with the
+        speaker control. Voice runs in the browser with no setup — set an ElevenLabs key for the
+        full, consistent voice.
+      </p>
 
       <div className="mt-8 grid gap-4 md:grid-cols-4">
         <Stat label="Techniques in the canon" value={`${RED_TEAM_LINEAGE.length}`} sub="1587 → today" />

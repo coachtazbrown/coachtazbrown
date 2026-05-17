@@ -47,6 +47,17 @@ Pages worth visiting:
 
 The method itself lives in `lib/redteam-knowledge.ts` — the red-teaming, coaching, and thinking lineages, ordered earliest → latest.
 
+### Talk to her — Nia, the voice
+
+The Partner is **Nia**: a Black woman strategist and red-team coach, modeled as a warm, incisive executive coach (config in `lib/redteam-config.ts → persona`). On `/workspace` you can **talk to her with your voice** (tap the mic — browser speech-to-text) and **she talks back** (speaker toggle).
+
+Voice degrades gracefully, exactly like the agent's demo mode:
+
+- **No setup:** speech-to-text and text-to-speech run in the browser (Web Speech API). The spoken voice is whatever female English voice the device offers — quality and character vary by OS/browser.
+- **The real voice:** set `ELEVENLABS_API_KEY` and `ELEVENLABS_VOICE_ID` (pick a Black female voice from the [ElevenLabs Voice Library](https://elevenlabs.io/)). `POST /api/voice/speak` then streams that consistent voice; if the key is missing or the call fails, it transparently returns to the browser voice.
+
+Speech-to-text uses the browser's `SpeechRecognition` (Chrome/Edge/Safari); the mic button is hidden where unsupported.
+
 ---
 
 ## Stack
@@ -64,6 +75,7 @@ The method itself lives in `lib/redteam-knowledge.ts` — the red-teaming, coach
 ```bash
 vercel deploy
 # set env: ANTHROPIC_API_KEY, AGENTS_MODEL (optional), AGENTS_DEMO_MODE (optional)
+# voice (optional): ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID, ELEVENLABS_MODEL_ID
 ```
 
 The marketing pages are fully static; the Partner is one dynamic API route.

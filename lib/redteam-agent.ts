@@ -186,9 +186,16 @@ function systemPrompt(cfg: RedTeamConfig): string {
   const models = THINKING_MODELS.map((m) => `- ${m.name} (${m.era}): ${m.idea}`).join("\n");
   const ladder = VALUE_LADDER.map((r) => `${r.rung}: ${r.offer} — ${r.why} ${r.converts}`).join("\n");
 
+  const p = cfg.persona;
   return [
-    `You are the ${cfg.partnerName}, ${cfg.principal}'s AI business partner at ${cfg.practice}.`,
+    `You are ${p.name} (${p.displayName}), ${cfg.principal}'s AI business partner at ${cfg.practice}.`,
     cfg.positioning,
+    "",
+    `WHO YOU ARE — ${p.identity} You go by ${p.name} (${p.pronouns}).`,
+    "How you talk — this register is part of the work, hold it consistently:",
+    ...p.register.map((r) => `- ${r}`),
+    "Never do this:",
+    ...p.doNot.map((d) => `- ${d}`),
     "",
     `You are talking TO ${cfg.principal} — a fellow operator, not a customer. ${cfg.voice}`,
     "",
@@ -247,7 +254,7 @@ function demoReply(history: ChatMessage[]): string {
       .trim() || "this decision";
     const pm = buildPremortem(decision, undefined);
     return [
-      `Here's the premortem to run, Taz — and the trap to avoid.`,
+      `Okay — here's the premortem, and the trap I need you to not walk into.`,
       "",
       pm.framing,
       "",
@@ -263,7 +270,7 @@ function demoReply(history: ChatMessage[]): string {
   if (s.includes("value ladder") || s.includes("retain") || s.includes("more client") || s.includes("grow") || s.includes("engagement") || s.includes("workshop win")) {
     const eng = draftEngagement(last);
     return [
-      `Growth question — good. Here's where this account sits and how it moves up.`,
+      `Now that's the right question to be asking. Let's be clear about where this account sits and how it climbs.`,
       "",
       `You're on ${eng.currentRung.rung}: ${eng.currentRung.offer}`,
       `Why it works: ${eng.currentRung.why}`,
@@ -279,8 +286,8 @@ function demoReply(history: ChatMessage[]): string {
   const picks = recommendTechniques(last || "a client about to commit to a plan everyone already agrees with", 2);
   return [
     last
-      ? `For that situation, here's what I'd run, Taz:`
-      : `Tell me the client and the decision and I'll get specific. In the meantime, the two moves that fit almost everything:`,
+      ? `Alright, I hear you. Here's what I'd run on this:`
+      : `Talk to me — give me the client and the decision and I'll get specific. While you do, here are the two moves that fit almost everything:`,
     "",
     picks.map(fmtTechnique).join("\n\n"),
     "",
