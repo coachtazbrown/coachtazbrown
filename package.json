@@ -1,8 +1,8 @@
 {
-  "name": "taz-brown-strategies",
+  "name": "galactic-studio-by-taz",
   "version": "0.1.0",
   "private": true,
-  "description": "Taz Brown Strategies — a red-teaming practice and its AI Red Teaming Partner",
+  "description": "Galactic Studio by Taz — automated, fact-checked, RAG-grounded faceless video for YouTube and LinkedIn",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

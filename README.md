@@ -1,18 +1,25 @@
-# Taz Brown Strategies
+# Galactic Studio by Taz
 
-A red-teaming practice for founders and leadership teams — and the AI partner that runs it.
+**Give it a topic. Get two finished, fact-checked, faceless videos.**
 
-We don't hand clients a strategy to nod at. We stress-test the one they already have: the unexamined assumption, the plan everyone agreed with too fast, the bet that's irreversible. We red-team it **before reality does**, while it's still cheap to change.
+Galactic Studio turns one line — *"compound interest"* — into a faceless **YouTube long-form** video and a **16:9 LinkedIn short**: researched live, grounded on clean data with RAG, fact-checked claim by claim, and rendered in the browser with kinetic captions and voiceover. Script, captions (.srt), post copy, tags, a thumbnail concept, and the rendered video all come out ready to ship.
 
-This repo is the practice's site and its working **Red Teaming Partner** — an AI business partner that coaches Taz on exactly which adversarial move to run on a client's decision, how to facilitate it without becoming the consultant, and how each exercise ladders into a retained engagement.
+It's built on one principle most AI video tools skip: **you should be able to stand behind everything you publish.** No specific — number, date, name, quote — ships marked "verified" without a citation.
 
 The whole thing is one Next.js 14 codebase. It runs locally in two commands.
 
 ---
 
-## The practice in one paragraph
+## What it does
 
-Most strategy failures aren't bad logic — they're sound logic on one assumption nobody was paid to attack. Taz Brown Strategies installs the adversarial thinking that finds it, drawing on the full canon from the Devil's Advocate (1587) to modern business red teaming (Hoffman, 2017+). Engagements climb a four-rung value ladder — **Land → Diagnose → Cadence → Install & Partner** — each rung engineered so the client asks for the next. Wins compound into referrals, not invoices. The full go-to-market is in [`docs/PLAYBOOK.md`](docs/PLAYBOOK.md).
+1. **You give a topic.** One line. That's the entire input.
+2. **It researches live.** Web search pulls current, reputable sources and captures every citation.
+3. **It grounds on clean data.** RAG retrieval over a curated craft corpus (`lib/studio/knowledge.ts`) shapes structure, hooks, and pacing — not guesswork.
+4. **It writes both cuts.** A ~6-minute YouTube teaching video and a ~50-second 16:9 LinkedIn short, written for the ear, scene by scene.
+5. **It fact-checks everything.** Every claim is graded (`verified` / `needs-review` / `corrected` / `opinion`) with a citation. Unsourced specifics are flagged, never smoothed over.
+6. **It renders the video.** A real canvas engine plays the faceless video — galaxy visuals, per-scene motifs, kinetic typography, burned-in captions, spoken voiceover — and **exports to a downloadable `.webm`**, entirely client-side.
+
+> **16:9 for both cuts** is by design (Taz's spec). Vertical (9:16) is a one-field change — `lib/studio/knowledge.ts → PLATFORMS` and the renderer already key off `aspect`.
 
 ---
 
@@ -20,7 +27,7 @@ Most strategy failures aren't bad logic — they're sound logic on one assumptio
 
 ```bash
 npm install
-cp .env.example .env.local        # optional — the Partner runs in demo mode without a key
+cp .env.example .env.local        # optional — the Studio runs a full offline engine without a key
 npm run dev                       # http://localhost:3000
 ```
 
@@ -28,45 +35,35 @@ Pages worth visiting:
 
 | Path | What it is |
 |---|---|
-| `/` | The pitch — the practice, the Partner, the canon |
-| `/method` | The whole canon, earliest to latest: red teaming, coaching, thinking models |
-| `/pricing` | The four-rung value ladder as priced engagements |
-| `/dashboard` | The practice's book of business — clients by ladder rung |
-| `/workspace` | **The Red Teaming Partner** — the live, tool-using AI partner |
+| `/` | The pitch — one topic in, two videos out |
+| `/studio` | **The Studio** — type a topic, watch the pipeline, get both videos |
+| `/training` | Training & coaching by Taz — self-paced, group, and 1:1 |
 
-### The Red Teaming Partner, the working agent
+### The generation engine
 
-`POST /api/chat/redteam` accepts `{ messages: [{role, content}] }` and replies with `{ reply, toolCalls }`. It uses Claude (`claude-sonnet-4-6` by default) with tool use:
+`POST /api/studio/generate` accepts `{ topic }` and returns `{ production }` — the full package: both 16:9 cuts (scenes, voiceover, on-screen captions, post copy, tags, chapters), the RAG grounding with sources, the fact-check with per-claim verdicts and citations, a thumbnail concept, and a publish checklist. The shape is defined in `lib/studio/types.ts`.
 
-- `recommend_technique` — best-fit moves from the curated lineage for a client situation
-- `build_premortem` — a ready-to-run premortem facilitation script for a specific decision
-- `stress_test_plan` — a Key Assumptions Check structure against a plan
-- `draft_engagement` — where the account sits on the value ladder and how to convert
+**No API key required.** Leave `ANTHROPIC_API_KEY` empty (or set `AGENTS_DEMO_MODE=true`) and the Studio runs its **honest offline engine** (`lib/studio/demo.ts`): a complete, genuinely useful production grounded in the corpus, with every checkable specific flagged for live verification. It never fakes a source. With a real key, the live agent (`lib/studio/agent.ts`) researches with web search and verifies each claim against live sources.
 
-**No API key required to demo.** Leave `ANTHROPIC_API_KEY` empty (or set `AGENTS_DEMO_MODE=true`) and the Partner runs a fallback that still reasons over the real method — believable and genuinely useful, not canned fluff. With a real key it behaves like the production agent: calls tools, names every technique and its origin, and always ends at the next paid step.
+Engine map:
 
-The method itself lives in `lib/redteam-knowledge.ts` — the red-teaming, coaching, and thinking lineages, ordered earliest → latest.
-
-### Talk to her — Nia, the voice
-
-The Partner is **Nia**: a Black woman strategist and red-team coach, modeled as a warm, incisive executive coach (config in `lib/redteam-config.ts → persona`). On `/workspace` you can **talk to her with your voice** (tap the mic — browser speech-to-text) and **she talks back** (speaker toggle).
-
-Voice degrades gracefully, exactly like the agent's demo mode:
-
-- **No setup:** speech-to-text and text-to-speech run in the browser (Web Speech API). The spoken voice is whatever female English voice the device offers — quality and character vary by OS/browser.
-- **The real voice:** set `ELEVENLABS_API_KEY` and `POST /api/voice/speak` streams a consistent cloud voice. The pinned default is the ElevenLabs voice selected for Nia (`SAz9YHcvj6GT2YYXdXww`). That voice must be **added to the ElevenLabs account** whose key you set, so it resolves for that key; `ELEVENLABS_VOICE_ID` overrides it at runtime. If the key is missing, the voice isn't on the account, or the call fails, it transparently returns to the browser voice.
-
-Speech-to-text uses the browser's `SpeechRecognition` (Chrome/Edge/Safari); the mic button is hidden where unsupported.
+- `lib/studio/types.ts` — the `Production` contract every layer reads from
+- `lib/studio/knowledge.ts` — the clean-data corpus + a real keyword retriever + platform specs
+- `lib/studio/factcheck.ts` — claim extraction and grading (runs over the *finished* script)
+- `lib/studio/demo.ts` — the offline production engine
+- `lib/studio/agent.ts` — the live agent: Claude + web search → structured production
+- `components/studio/VideoPlayer.tsx` — the canvas video renderer + `.webm` export
+- `components/studio/StudioConsole.tsx` — the topic console, pipeline view, and asset downloads
 
 ---
 
 ## Stack
 
 - **Next.js 14** (App Router) + TypeScript
-- **Tailwind CSS** with a custom bone/ink/accent palette
-- **Anthropic SDK** (`@anthropic-ai/sdk`) — Claude with tool use
+- **Tailwind CSS** with a custom bone/ink/accent palette + a space palette in the renderer
+- **Anthropic SDK** (`@anthropic-ai/sdk`) — Claude with tool use + server-side web search
 - **Zod** for API input validation
-- No DB. The method and the client book are seeded in `lib/`. In production, swap `lib/practice.ts` for a CRM query and `lib/redteam-knowledge.ts` for a retrievable corpus — the call signatures already look like data-access functions.
+- **Canvas + MediaRecorder + Web Speech API** — the faceless video renderer, voiceover, and export, all client-side. No paid render API.
 
 ---
 
@@ -75,19 +72,20 @@ Speech-to-text uses the browser's `SpeechRecognition` (Chrome/Edge/Safari); the 
 ```bash
 vercel deploy
 # set env: ANTHROPIC_API_KEY, AGENTS_MODEL (optional), AGENTS_DEMO_MODE (optional)
-# voice (optional): ELEVENLABS_API_KEY, ELEVENLABS_VOICE_ID, ELEVENLABS_MODEL_ID
 ```
 
-The marketing pages are fully static; the Partner is one dynamic API route.
+The marketing/training pages are fully static; the Studio is one dynamic API route.
 
 ---
 
 ## What to build next (in priority order)
 
-1. **Retrievable method corpus** — move `lib/redteam-knowledge.ts` into a vector store so the Partner cites primary sources verbatim.
-2. **Client CRM** — replace `lib/practice.ts` with a real pipeline; track each client's ladder rung and next move.
-3. **Engagement artifacts** — generate the assumption table / premortem action list as exportable, owned, dated deliverables.
-4. **Calibration ledger** — log every forecast a client makes in a session, resolve it on date, score it across cycles (the Cadence rung only pays off if it compounds).
-5. **Referral engine** — turn cleared client wins into case studies and warm intros, closing the loop from Install & Partner back to new Land clients.
+1. **Cloud render + audio mux** — render the canvas server-side (e.g. headless + ffmpeg) and mux the ElevenLabs voiceover into the exported MP4, so the downloaded file has narration baked in.
+2. **Vector corpus** — move `lib/studio/knowledge.ts` into a vector store for richer retrieval as the corpus grows.
+3. **Direct publishing** — push finished cuts to the YouTube and LinkedIn APIs from the Studio.
+4. **Voice picker** — wire the existing `/api/voice/speak` ElevenLabs route into the renderer so each cut narrates in a chosen, consistent voice.
+5. **Project history** — persist productions so a creator builds a library, not one-offs.
 
-See `docs/PLAYBOOK.md` for the full roadmap.
+---
+
+> This repo also contains an earlier project — **Taz Brown Strategies**, a red-teaming practice and its AI partner "Nia" (`/method`, `/pricing`, `/dashboard`, `/workspace`, `lib/redteam-*`). It still builds and runs; Galactic Studio is the current product.
