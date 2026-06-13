@@ -4,7 +4,15 @@ import { z } from "zod";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const Schema = z.object({ text: z.string().min(1).max(3000) });
+const Schema = z.object({
+  text: z.string().min(1).max(3000),
+  // Optional ElevenLabs voice id chosen in the UI. Must be available to the
+  // account behind ELEVENLABS_API_KEY or the call falls back to the browser voice.
+  voiceId: z
+    .string()
+    .regex(/^[A-Za-z0-9]{1,40}$/)
+    .optional()
+});
 
 // Pinned default: the ElevenLabs voice Taz selected for Nia. It must be added
 // to the ElevenLabs account whose key is in ELEVENLABS_API_KEY so it resolves;
@@ -43,7 +51,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ fallback: true, reason: "no_key" });
   }
 
-  const voiceId = process.env.ELEVENLABS_VOICE_ID || DEFAULT_VOICE_ID;
+  const voiceId = parsed.data.voiceId || process.env.ELEVENLABS_VOICE_ID || DEFAULT_VOICE_ID;
   const modelId = process.env.ELEVENLABS_MODEL_ID || DEFAULT_MODEL_ID;
 
   try {

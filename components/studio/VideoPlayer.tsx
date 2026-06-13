@@ -30,6 +30,17 @@ const COL = {
   white: "#FFFFFF"
 };
 
+// Selectable studio voices. "" = the pinned default (Nia). The rest are common
+// ElevenLabs library voices; each must be available to the account behind
+// ELEVENLABS_API_KEY, or the call falls back to the browser voice.
+const VOICES: { id: string; name: string }[] = [
+  { id: "", name: "Default (Nia)" },
+  { id: "21m00Tcm4TlvDq8ikWAM", name: "Rachel" },
+  { id: "pNInz6obpgDQGcFmaJgB", name: "Adam" },
+  { id: "EXAVITQu4vr4xnSDxMaL", name: "Bella" },
+  { id: "ErXwobaYiN019PkySvjV", name: "Antoni" }
+];
+
 type Star = { x: number; y: number; r: number; tw: number; sp: number };
 
 function makeStars(n: number): Star[] {
@@ -92,6 +103,7 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
   const [recording, setRecording] = useState(false);
   const [studioVoice, setStudioVoice] = useState(false);
   const [voiceLoading, setVoiceLoading] = useState(false);
+  const [voiceId, setVoiceId] = useState("");
   const [durations, setDurations] = useState<number[] | null>(null); // per-scene seconds when studio voice paces the cut
   const [t, setT] = useState(0);
   const recRef = useRef<MediaRecorder | null>(null);
@@ -446,15 +458,11 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
   };
 
   // ── Studio voice (ElevenLabs) ─────────────────────────────────────────────────
-  const toggleStudioVoice = async () => {
-    if (studioVoice) {
-      stopAudio();
-      setStudioVoice(false);
-      setDurations(null);
-      buffersRef.current = [];
-      return;
-    }
+  const loadStudioVoice = async (vid: string) => {
     setVoiceLoading(true);
+    cancelAnimationFrame(rafRef.current);
+    stopAudio();
+    setPlaying(false);
     try {
       const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
       if (!audioCtxRef.current) {
@@ -468,7 +476,7 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         const res = await fetch("/api/voice/speak", {
           method: "POST",
           headers: { "content-type": "application/json" },
-          body: JSON.stringify({ text: s.voiceover })
+          body: JSON.stringify({ text: s.voiceover, ...(vid ? { voiceId: vid } : {}) })
         });
         const ctype = res.headers.get("content-type") || "";
         if (!res.ok || !ctype.includes("audio")) throw new Error("no_studio_voice");
@@ -478,16 +486,37 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         durs.push(Math.max(2, buf.duration + 0.25));
       }
       buffersRef.current = buffers;
+      offsetRef.current = 0;
+      spokenRef.current = -1;
+      setT(0);
       setDurations(durs);
       setStudioVoice(true);
     } catch {
       buffersRef.current = [];
+      setStudioVoice(false);
+      setDurations(null);
       alert(
-        "Studio voice needs an ELEVENLABS_API_KEY on the server (and the voice added to that account). Staying on the browser voice for now."
+        "Studio voice needs an ELEVENLABS_API_KEY on the server (and the chosen voice added to that account). Staying on the browser voice for now."
       );
     } finally {
       setVoiceLoading(false);
     }
+  };
+
+  const toggleStudioVoice = () => {
+    if (studioVoice) {
+      stopAudio();
+      setStudioVoice(false);
+      setDurations(null);
+      buffersRef.current = [];
+      return;
+    }
+    void loadStudioVoice(voiceId);
+  };
+
+  const changeVoice = (vid: string) => {
+    setVoiceId(vid);
+    if (studioVoice || voiceLoading) void loadStudioVoice(vid);
   };
 
   // ── Recording ───────────────────────────────────────────────────────────────
@@ -509,21 +538,28 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
     if (withAudio) tracks.push(...audioDestRef.current!.stream.getAudioTracks());
     const out = new MediaStream(tracks);
 
-    const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9,opus")
-      ? "video/webm;codecs=vp9,opus"
-      : MediaRecorder.isTypeSupported("video/webm;codecs=vp8,opus")
-      ? "video/webm;codecs=vp8,opus"
-      : "video/webm";
+    // Prefer MP4 where the browser's recorder supports it (Safari) so the file
+    // plays widely; fall back to WebM (Chrome/Firefox).
+    const candidates = [
+      "video/mp4;codecs=avc1.4d002a,mp4a.40.2",
+      "video/mp4;codecs=avc1,mp4a",
+      "video/mp4",
+      "video/webm;codecs=vp9,opus",
+      "video/webm;codecs=vp8,opus",
+      "video/webm"
+    ];
+    const mime = candidates.find((c) => MediaRecorder.isTypeSupported(c)) || "video/webm";
+    const ext = mime.startsWith("video/mp4") ? "mp4" : "webm";
     const rec = new MediaRecorder(out, { mimeType: mime });
     chunksRef.current = [];
     rec.ondataavailable = (e) => e.data.size && chunksRef.current.push(e.data);
     rec.onstop = () => {
       setRecording(false);
-      const blob = new Blob(chunksRef.current, { type: "video/webm" });
+      const blob = new Blob(chunksRef.current, { type: mime });
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `galactic-studio-${cut.platform}-${Date.now()}.webm`;
+      a.download = `galactic-studio-${cut.platform}-${Date.now()}.${ext}`;
       a.click();
       URL.revokeObjectURL(url);
     };
@@ -576,6 +612,19 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         >
           {voiceLoading ? "Loading voice…" : studioVoice ? "✦ Studio voice on" : "✦ Studio voice"}
         </button>
+        <select
+          value={voiceId}
+          onChange={(e) => changeVoice(e.target.value)}
+          disabled={voiceLoading}
+          className="rounded-full border border-white/20 bg-[#0B0A18] px-2 py-1.5 text-xs text-bone outline-none hover:border-white/50 disabled:opacity-50"
+          title="Choose the studio narration voice"
+        >
+          {VOICES.map((v) => (
+            <option key={v.id || "default"} value={v.id} className="bg-[#0B0A18]">
+              {v.name}
+            </option>
+          ))}
+        </select>
         <span className="ml-1 font-mono text-xs text-white/60">
           {fmt(t)} / {fmt(total)}
         </span>
