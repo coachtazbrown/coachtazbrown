@@ -4,10 +4,10 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "Taz Brown Strategies — we red-team your strategy before reality does",
+  title: "Galactic Studio by Taz — faceless videos, automated and fact-checked",
   description:
-    "A red-teaming practice for founders and leadership teams. Premortems, assumption checks, war-games, and a Red Teaming Partner that coaches you through every one — the canon, 1587 to today.",
-  metadataBase: new URL("https://tazbrownstrategies.com")
+    "Give it a topic. Galactic Studio researches it, grounds the script on clean data with RAG, fact-checks every claim, and produces a faceless YouTube video and a 16:9 LinkedIn short — script, captions, voiceover, thumbnail, and publish copy included. Plus training and coaching by Taz.",
+  metadataBase: new URL("https://galacticstudio.app")
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
