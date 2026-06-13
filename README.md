@@ -63,7 +63,7 @@ Engine map:
 - **Tailwind CSS** with a custom bone/ink/accent palette + a space palette in the renderer
 - **Anthropic SDK** (`@anthropic-ai/sdk`) — Claude with tool use + server-side web search
 - **Zod** for API input validation
-- **Canvas + MediaRecorder + Web Speech API** — the faceless video renderer, voiceover, and export, all client-side. No paid render API.
+- **Canvas + MediaRecorder + Web Audio / Web Speech** — the faceless video renderer, voiceover, and export, all client-side. No paid render API. The **studio voice** (ElevenLabs via `/api/voice/speak`) re-paces each scene to the real narration and is muxed into the exported `.webm`; with no key it falls back to the browser voice.
 
 ---
 
@@ -80,10 +80,10 @@ The marketing/training pages are fully static; the Studio is one dynamic API rou
 
 ## What to build next (in priority order)
 
-1. **Cloud render + audio mux** — render the canvas server-side (e.g. headless + ffmpeg) and mux the ElevenLabs voiceover into the exported MP4, so the downloaded file has narration baked in.
+1. **Cloud render to MP4** — render the canvas server-side (e.g. headless + ffmpeg) for a universally-compatible MP4. The studio voice is already muxed into the client-side `.webm` export today.
 2. **Vector corpus** — move `lib/studio/knowledge.ts` into a vector store for richer retrieval as the corpus grows.
 3. **Direct publishing** — push finished cuts to the YouTube and LinkedIn APIs from the Studio.
-4. **Voice picker** — wire the existing `/api/voice/speak` ElevenLabs route into the renderer so each cut narrates in a chosen, consistent voice.
+4. **Voice picker** — expose `ELEVENLABS_VOICE_ID` selection in the UI so each cut can narrate in a chosen voice (the route already supports overrides).
 5. **Project history** — persist productions so a creator builds a library, not one-offs.
 
 ---

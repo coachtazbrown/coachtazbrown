@@ -2,12 +2,17 @@
 
 // Galactic Studio — the faceless video renderer.
 //
-// This is a real video engine, not a mockup. It plays a Cut on a 16:9 canvas:
-// an animated galaxy backdrop, a per-scene motif, kinetic keyword typography,
-// burned-in word-by-word captions synced to the timeline, and spoken voiceover
-// via the browser's speech synthesis (or the ElevenLabs route when configured).
-// It records the canvas to a downloadable .webm so a topic genuinely becomes a
-// video, entirely client-side, with no paid render API.
+// A real video engine, not a mockup. It plays a Cut on a 16:9 canvas: an
+// animated galaxy backdrop, a per-scene motif, kinetic keyword typography,
+// burned-in word-by-word captions synced to the timeline, and spoken voiceover.
+//
+// Two voice modes:
+//  • Browser voice (default) — Web Speech API, instant, no setup, visual-only export.
+//  • Studio voice — ElevenLabs via /api/voice/speak. Scene durations re-pace to the
+//    real narration so audio + captions stay in sync, and the audio is muxed into
+//    the exported .webm so the downloaded file actually has a voiceover.
+// Studio voice activates only when an ELEVENLABS_API_KEY is set; otherwise it
+// transparently falls back to the browser voice.
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Cut, Motif, Scene } from "@/lib/studio/types";
@@ -15,7 +20,6 @@ import type { Cut, Motif, Scene } from "@/lib/studio/types";
 const W = 1280;
 const H = 720; // 16:9
 
-// Space palette, tuned to the Galactic Studio brand.
 const COL = {
   bg0: "#06060F",
   bg1: "#141034",
@@ -73,47 +77,63 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const starsRef = useRef<Star[]>(makeStars(140));
   const rafRef = useRef<number>(0);
-  const offsetRef = useRef(0); // seconds already played before current play segment
-  const playStartRef = useRef(0); // performance.now() when current segment began
-  const spokenRef = useRef(-1); // last scene index we triggered speech for
+  const offsetRef = useRef(0);
+  const playStartRef = useRef(0);
+  const spokenRef = useRef(-1);
+
+  // Studio-voice (ElevenLabs) audio graph.
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const audioDestRef = useRef<MediaStreamAudioDestinationNode | null>(null);
+  const buffersRef = useRef<AudioBuffer[]>([]);
+  const sourceRef = useRef<AudioBufferSourceNode | null>(null);
 
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [recording, setRecording] = useState(false);
-  const [t, setT] = useState(0); // current time in seconds (for UI)
+  const [studioVoice, setStudioVoice] = useState(false);
+  const [voiceLoading, setVoiceLoading] = useState(false);
+  const [durations, setDurations] = useState<number[] | null>(null); // per-scene seconds when studio voice paces the cut
+  const [t, setT] = useState(0);
   const recRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
 
-  const total = useMemo(() => cut.scenes.reduce((a, s) => a + s.seconds, 0), [cut]);
+  const secOf = useCallback(
+    (i: number) => durations?.[i] ?? cut.scenes[i].seconds,
+    [durations, cut]
+  );
+
+  const total = useMemo(
+    () => cut.scenes.reduce((a, _s, i) => a + (durations?.[i] ?? cut.scenes[i].seconds), 0),
+    [cut, durations]
+  );
   const starts = useMemo(() => {
     const arr: number[] = [];
     let acc = 0;
-    for (const s of cut.scenes) {
+    for (let i = 0; i < cut.scenes.length; i++) {
       arr.push(acc);
-      acc += s.seconds;
+      acc += durations?.[i] ?? cut.scenes[i].seconds;
     }
     return arr;
-  }, [cut]);
+  }, [cut, durations]);
 
   const sceneAt = useCallback(
     (time: number): { scene: Scene; idx: number; p: number } => {
       let idx = 0;
       for (let i = 0; i < cut.scenes.length; i++) if (time >= starts[i]) idx = i;
       const scene = cut.scenes[idx];
-      const p = Math.min(1, (time - starts[idx]) / scene.seconds);
+      const p = Math.min(1, (time - starts[idx]) / secOf(idx));
       return { scene, idx, p };
     },
-    [cut, starts]
+    [cut, starts, secOf]
   );
 
-  // ── Speech ────────────────────────────────────────────────────────────────
-  const speak = useCallback(
+  // ── Voice ─────────────────────────────────────────────────────────────────
+  const speakBrowser = useCallback(
     (text: string) => {
       if (muted || typeof window === "undefined" || !window.speechSynthesis) return;
       window.speechSynthesis.cancel();
       const u = new SpeechSynthesisUtterance(text);
       u.rate = 1.02;
-      u.pitch = 1.0;
       const vs = window.speechSynthesis.getVoices();
       const pref =
         vs.find((v) => /Google US English|Samantha|Jenny|Aria/i.test(v.name)) ||
@@ -122,6 +142,35 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       window.speechSynthesis.speak(u);
     },
     [muted]
+  );
+
+  const stopAudio = useCallback(() => {
+    try {
+      sourceRef.current?.stop();
+    } catch {}
+    sourceRef.current = null;
+    if (typeof window !== "undefined") window.speechSynthesis?.cancel();
+  }, []);
+
+  const playSceneVoice = useCallback(
+    (idx: number, scene: Scene) => {
+      if (studioVoice && buffersRef.current[idx] && audioCtxRef.current) {
+        if (muted) return;
+        try {
+          sourceRef.current?.stop();
+        } catch {}
+        const ctx = audioCtxRef.current;
+        const src = ctx.createBufferSource();
+        src.buffer = buffersRef.current[idx];
+        src.connect(ctx.destination);
+        if (audioDestRef.current) src.connect(audioDestRef.current);
+        src.start();
+        sourceRef.current = src;
+      } else {
+        speakBrowser(scene.voiceover);
+      }
+    },
+    [studioVoice, muted, speakBrowser]
   );
 
   // ── Drawing ─────────────────────────────────────────────────────────────────
@@ -153,7 +202,7 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         const n = 5;
         const bw = 70;
         const gap = 34;
-        const x0 = cx - ((n * bw + (n - 1) * gap) / 2);
+        const x0 = cx - (n * bw + (n - 1) * gap) / 2;
         for (let i = 0; i < n; i++) {
           const grow = Math.max(0, Math.min(1, p * 1.4 - i * 0.12));
           const hgt = (90 + i * 38) * grow;
@@ -236,7 +285,6 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       }
       case "starfield":
       default: {
-        // extra bright drifting stars, handled by the base layer; add a soft nebula
         const g = ctx.createRadialGradient(cx, cy, 20, cx, cy, 320);
         g.addColorStop(0, "rgba(124,123,255,0.22)");
         g.addColorStop(1, "rgba(124,123,255,0)");
@@ -255,7 +303,6 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
-      // Background
       const g = ctx.createLinearGradient(0, 0, W, H);
       g.addColorStop(0, COL.bg0);
       g.addColorStop(1, COL.bg1);
@@ -275,7 +322,6 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       const { scene, idx, p } = sceneAt(time);
       drawMotif(ctx, scene.motif, p, time);
 
-      // Big kinetic keyword
       const words = scene.onScreen.split(/\s+/);
       ctx.textAlign = "center";
       ctx.font = "800 76px ui-sans-serif, Segoe UI, system-ui, sans-serif";
@@ -288,7 +334,6 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         ctx.fillText(ln, W / 2, baseY + i * 80);
       });
 
-      // Burned-in voiceover captions (3–5 words advancing across the scene)
       const vo = scene.voiceover.split(/\s+/);
       const chunk = 5;
       const chunks = Math.max(1, Math.ceil(vo.length / chunk));
@@ -302,7 +347,6 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       ctx.fillStyle = COL.lime;
       ctx.fillText(capText, W / 2, H - 78);
 
-      // Chrome: role tag (top-left), watermark (bottom-right), progress bar
       ctx.textAlign = "left";
       ctx.font = "700 22px ui-sans-serif, system-ui, sans-serif";
       ctx.fillStyle = COL.blue;
@@ -318,13 +362,12 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       ctx.fillStyle = COL.lime;
       ctx.fillRect(0, H - 8, (time / total) * W, 8);
 
-      // Trigger voiceover at scene boundaries
       if (idx !== spokenRef.current) {
         spokenRef.current = idx;
-        speak(scene.voiceover);
+        playSceneVoice(idx, scene);
       }
     },
-    [sceneAt, speak, total]
+    [sceneAt, playSceneVoice, total]
   );
 
   // ── Animation loop ──────────────────────────────────────────────────────────
@@ -351,7 +394,6 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playing, total, render]);
 
-  // Draw the opening frame on mount / when the cut changes.
   useEffect(() => {
     offsetRef.current = 0;
     spokenRef.current = -1;
@@ -359,38 +401,93 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
     setPlaying(false);
     render(0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cut]);
+  }, [cut, durations]);
+
+  useEffect(() => {
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      stopAudio();
+    };
+  }, [stopAudio]);
 
   const play = () => {
     if (playing) {
       offsetRef.current = offsetRef.current + (performance.now() - playStartRef.current) / 1000;
       cancelAnimationFrame(rafRef.current);
-      if (typeof window !== "undefined") window.speechSynthesis?.cancel();
+      stopAudio();
       setPlaying(false);
     } else {
       if (offsetRef.current >= total) offsetRef.current = 0;
       spokenRef.current = -1;
+      audioCtxRef.current?.resume();
       setPlaying(true);
     }
   };
 
   const restart = () => {
     cancelAnimationFrame(rafRef.current);
-    if (typeof window !== "undefined") window.speechSynthesis?.cancel();
+    stopAudio();
     offsetRef.current = 0;
     spokenRef.current = -1;
     setT(0);
     render(0);
+    audioCtxRef.current?.resume();
     setPlaying(true);
   };
 
   const jumpTo = (idx: number) => {
     cancelAnimationFrame(rafRef.current);
+    stopAudio();
     offsetRef.current = starts[idx];
     spokenRef.current = -1;
     render(starts[idx]);
     setT(starts[idx]);
     if (!playing) setPlaying(true);
+  };
+
+  // ── Studio voice (ElevenLabs) ─────────────────────────────────────────────────
+  const toggleStudioVoice = async () => {
+    if (studioVoice) {
+      stopAudio();
+      setStudioVoice(false);
+      setDurations(null);
+      buffersRef.current = [];
+      return;
+    }
+    setVoiceLoading(true);
+    try {
+      const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new Ctx();
+        audioDestRef.current = audioCtxRef.current.createMediaStreamDestination();
+      }
+      await audioCtxRef.current.resume();
+      const buffers: AudioBuffer[] = [];
+      const durs: number[] = [];
+      for (const s of cut.scenes) {
+        const res = await fetch("/api/voice/speak", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ text: s.voiceover })
+        });
+        const ctype = res.headers.get("content-type") || "";
+        if (!res.ok || !ctype.includes("audio")) throw new Error("no_studio_voice");
+        const ab = await res.arrayBuffer();
+        const buf = await audioCtxRef.current.decodeAudioData(ab);
+        buffers.push(buf);
+        durs.push(Math.max(2, buf.duration + 0.25));
+      }
+      buffersRef.current = buffers;
+      setDurations(durs);
+      setStudioVoice(true);
+    } catch {
+      buffersRef.current = [];
+      alert(
+        "Studio voice needs an ELEVENLABS_API_KEY on the server (and the voice added to that account). Staying on the browser voice for now."
+      );
+    } finally {
+      setVoiceLoading(false);
+    }
   };
 
   // ── Recording ───────────────────────────────────────────────────────────────
@@ -399,16 +496,25 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
   };
 
   const startRecording = () => {
-    const canvas = canvasRef.current as (HTMLCanvasElement & { captureStream?: (fps?: number) => MediaStream }) | null;
+    const canvas = canvasRef.current as
+      | (HTMLCanvasElement & { captureStream?: (fps?: number) => MediaStream })
+      | null;
     if (!canvas || typeof canvas.captureStream !== "function") {
       alert("This browser can't record the canvas. Try Chrome — or download the script, captions, and voiceover assets instead.");
       return;
     }
     const stream = canvas.captureStream(30);
-    const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9")
-      ? "video/webm;codecs=vp9"
+    const tracks: MediaStreamTrack[] = stream.getVideoTracks();
+    const withAudio = studioVoice && !muted && audioDestRef.current && buffersRef.current.length > 0;
+    if (withAudio) tracks.push(...audioDestRef.current!.stream.getAudioTracks());
+    const out = new MediaStream(tracks);
+
+    const mime = MediaRecorder.isTypeSupported("video/webm;codecs=vp9,opus")
+      ? "video/webm;codecs=vp9,opus"
+      : MediaRecorder.isTypeSupported("video/webm;codecs=vp8,opus")
+      ? "video/webm;codecs=vp8,opus"
       : "video/webm";
-    const rec = new MediaRecorder(stream, { mimeType: mime });
+    const rec = new MediaRecorder(out, { mimeType: mime });
     chunksRef.current = [];
     rec.ondataavailable = (e) => e.data.size && chunksRef.current.push(e.data);
     rec.onstop = () => {
@@ -441,7 +547,11 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         onClick={play}
       />
       <div className="flex flex-wrap items-center gap-2 border-t border-white/10 bg-[#0B0A18] px-4 py-3 text-bone">
-        <button onClick={play} className="rounded-full bg-lime px-4 py-1.5 text-sm font-semibold text-[#06060F]" style={{ backgroundColor: COL.lime }}>
+        <button
+          onClick={play}
+          className="rounded-full px-4 py-1.5 text-sm font-semibold text-[#06060F]"
+          style={{ backgroundColor: COL.lime }}
+        >
           {playing ? "❚❚ Pause" : "▶ Play"}
         </button>
         <button onClick={restart} className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-bone hover:border-white/50">
@@ -449,12 +559,22 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         </button>
         <button
           onClick={() => {
-            if (typeof window !== "undefined") window.speechSynthesis?.cancel();
+            stopAudio();
             setMuted((m) => !m);
           }}
           className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-bone hover:border-white/50"
         >
           {muted ? "🔇 Voiceover off" : "🔊 Voiceover on"}
+        </button>
+        <button
+          onClick={toggleStudioVoice}
+          disabled={voiceLoading}
+          className={`rounded-full px-3 py-1.5 text-sm transition disabled:opacity-50 ${
+            studioVoice ? "bg-[#7C7BFF] text-[#06060F]" : "border border-white/20 text-bone hover:border-white/50"
+          }`}
+          title="Narrate with the consistent ElevenLabs studio voice and mux it into the exported video"
+        >
+          {voiceLoading ? "Loading voice…" : studioVoice ? "✦ Studio voice on" : "✦ Studio voice"}
         </button>
         <span className="ml-1 font-mono text-xs text-white/60">
           {fmt(t)} / {fmt(total)}
@@ -466,7 +586,7 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
             </button>
           ) : (
             <button onClick={startRecording} className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-bone hover:border-white/50">
-              ⬇ Export video (.webm)
+              ⬇ Export video ({studioVoice ? ".webm + audio" : ".webm"})
             </button>
           )}
         </div>
