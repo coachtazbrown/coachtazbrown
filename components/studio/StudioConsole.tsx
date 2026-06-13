@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Cut, FactCheckItem, Production } from "@/lib/studio/types";
 import VideoPlayer from "./VideoPlayer";
+import { addToLibrary, loadLibrary, removeFromLibrary, type LibItem } from "./library";
 
 const STAGES = [
   { key: "research", label: "Researching the topic", sub: "live web search · gathering reputable sources" },
@@ -75,9 +76,22 @@ export default function StudioConsole() {
   const [prod, setProd] = useState<Production | null>(null);
   const [activeCut, setActiveCut] = useState(0);
   const [error, setError] = useState<string | null>(null);
+  const [library, setLibrary] = useState<LibItem[]>([]);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => () => { if (timerRef.current) clearInterval(timerRef.current); }, []);
+  useEffect(() => { setLibrary(loadLibrary()); }, []);
+
+  function openSaved(item: LibItem) {
+    setProd(item.production);
+    setActiveCut(0);
+    setError(null);
+    if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function deleteSaved(id: string) {
+    setLibrary(removeFromLibrary(id));
+  }
 
   async function generate(t: string) {
     const topicToUse = t.trim();
@@ -98,8 +112,10 @@ export default function StudioConsole() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.message || "Generation failed");
-      setProd(data.production as Production);
+      const production = data.production as Production;
+      setProd(production);
       setActiveCut(0);
+      setLibrary(addToLibrary(production));
     } catch (e: any) {
       setError(e?.message || "Something went wrong. Try the topic again.");
     } finally {
@@ -146,6 +162,41 @@ export default function StudioConsole() {
           ))}
         </div>
       </div>
+
+      {/* ── Studio library ── */}
+      {library.length > 0 && (
+        <div className="mt-6 rounded-3xl border border-ink/10 bg-white p-6">
+          <div className="mb-3 flex items-center justify-between">
+            <div className="text-xs font-semibold uppercase tracking-widest text-slate2">
+              Your studio library
+            </div>
+            <div className="text-xs text-slate2">{library.length} saved · stored on this device</div>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {library.map((item) => (
+              <div
+                key={item.id}
+                className="group flex items-center gap-2 rounded-full border border-ink/15 bg-bone py-1 pl-3 pr-1.5 text-sm"
+              >
+                <button onClick={() => openSaved(item)} className="max-w-[16rem] truncate hover:text-accent" title={item.topic}>
+                  {item.topic}
+                </button>
+                <span className={`rounded-full px-1.5 py-0.5 text-[10px] ${item.demo ? "bg-ink/10 text-slate2" : "bg-sage/20 text-sage"}`}>
+                  {item.demo ? "offline" : "live"}
+                </span>
+                <button
+                  onClick={() => deleteSaved(item.id)}
+                  className="rounded-full px-1.5 text-slate2 hover:text-red-600"
+                  title="Remove from library"
+                  aria-label="Remove from library"
+                >
+                  ✕
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* ── Pipeline progress ── */}
       {loading && (
@@ -232,6 +283,14 @@ export default function StudioConsole() {
                   className="btn-ghost text-xs"
                 >
                   ⧉ Copy caption
+                </button>
+                <button
+                  onClick={() =>
+                    download(`${prod.topic.replace(/\s+/g, "-")}-production.json`, JSON.stringify(prod, null, 2), "application/json")
+                  }
+                  className="btn-ghost text-xs"
+                >
+                  ⬇ Full production (.json)
                 </button>
               </div>
 

@@ -83,8 +83,10 @@ The marketing/training pages are fully static; the Studio is one dynamic API rou
 1. **Cloud render to MP4** — render the canvas server-side (e.g. headless + ffmpeg) for a universally-compatible MP4. The studio voice is already muxed into the client-side `.webm` export today.
 2. **Vector corpus** — move `lib/studio/knowledge.ts` into a vector store for richer retrieval as the corpus grows.
 3. **Direct publishing** — push finished cuts to the YouTube and LinkedIn APIs from the Studio.
-4. **Voice picker** — expose `ELEVENLABS_VOICE_ID` selection in the UI so each cut can narrate in a chosen voice (the route already supports overrides).
-5. **Project history** — persist productions so a creator builds a library, not one-offs.
+4. **Server-persisted library** — the studio already keeps a local (per-device) production library; move it to a backing store so it follows the creator across devices.
+5. **Team workspaces** — shared libraries, brand kits, and approval flows on top of the production model.
+
+Already shipped: a UI **voice picker** (incl. custom ElevenLabs IDs), MP4-preferred export, full-production JSON export, and a **local production library** that saves and re-opens every video on the device.
 
 ---
 
