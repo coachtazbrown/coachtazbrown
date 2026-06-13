@@ -38,8 +38,11 @@ const VOICES: { id: string; name: string }[] = [
   { id: "21m00Tcm4TlvDq8ikWAM", name: "Rachel" },
   { id: "pNInz6obpgDQGcFmaJgB", name: "Adam" },
   { id: "EXAVITQu4vr4xnSDxMaL", name: "Bella" },
-  { id: "ErXwobaYiN019PkySvjV", name: "Antoni" }
+  { id: "ErXwobaYiN019PkySvjV", name: "Antoni" },
+  { id: "__custom__", name: "Custom ID…" }
 ];
+
+const VOICE_ID_RE = /^[A-Za-z0-9]{1,40}$/;
 
 type Star = { x: number; y: number; r: number; tw: number; sp: number };
 
@@ -103,7 +106,10 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
   const [recording, setRecording] = useState(false);
   const [studioVoice, setStudioVoice] = useState(false);
   const [voiceLoading, setVoiceLoading] = useState(false);
-  const [voiceId, setVoiceId] = useState("");
+  const [voiceId, setVoiceId] = useState(""); // dropdown selection ("" | id | "__custom__")
+  const [customId, setCustomId] = useState("");
+
+  const effectiveVoice = () => (voiceId === "__custom__" ? customId.trim() : voiceId);
   const [durations, setDurations] = useState<number[] | null>(null); // per-scene seconds when studio voice paces the cut
   const [t, setT] = useState(0);
   const recRef = useRef<MediaRecorder | null>(null);
@@ -511,12 +517,26 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       buffersRef.current = [];
       return;
     }
-    void loadStudioVoice(voiceId);
+    if (voiceId === "__custom__" && !VOICE_ID_RE.test(customId.trim())) {
+      alert("Paste a valid ElevenLabs voice ID (letters and numbers) from your account, then press Use.");
+      return;
+    }
+    void loadStudioVoice(effectiveVoice());
   };
 
   const changeVoice = (vid: string) => {
     setVoiceId(vid);
+    if (vid === "__custom__") return; // wait for the user to enter + apply an ID
     if (studioVoice || voiceLoading) void loadStudioVoice(vid);
+  };
+
+  const applyCustomVoice = () => {
+    const id = customId.trim();
+    if (!VOICE_ID_RE.test(id)) {
+      alert("That doesn't look like a voice ID. Use the letters/numbers ID from your ElevenLabs voice (e.g. 21m00Tcm4TlvDq8ikWAM).");
+      return;
+    }
+    void loadStudioVoice(id);
   };
 
   // ── Recording ───────────────────────────────────────────────────────────────
@@ -625,6 +645,24 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
             </option>
           ))}
         </select>
+        {voiceId === "__custom__" && (
+          <span className="flex items-center gap-1">
+            <input
+              value={customId}
+              onChange={(e) => setCustomId(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && applyCustomVoice()}
+              placeholder="ElevenLabs voice ID"
+              className="w-40 rounded-full border border-white/20 bg-[#0B0A18] px-3 py-1.5 text-xs text-bone outline-none focus:border-[#7C7BFF]"
+            />
+            <button
+              onClick={applyCustomVoice}
+              disabled={voiceLoading}
+              className="rounded-full bg-[#7C7BFF] px-2.5 py-1.5 text-xs font-semibold text-[#06060F] disabled:opacity-50"
+            >
+              Use
+            </button>
+          </span>
+        )}
         <span className="ml-1 font-mono text-xs text-white/60">
           {fmt(t)} / {fmt(total)}
         </span>
