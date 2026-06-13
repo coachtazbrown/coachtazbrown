@@ -83,10 +83,18 @@ The marketing/training pages are fully static; the Studio is one dynamic API rou
 1. **Cloud render to MP4** — render the canvas server-side (e.g. headless + ffmpeg) for a universally-compatible MP4. The studio voice is already muxed into the client-side `.webm` export today.
 2. **Vector corpus** — move `lib/studio/knowledge.ts` into a vector store for richer retrieval as the corpus grows.
 3. **Direct publishing** — push finished cuts to the YouTube and LinkedIn APIs from the Studio.
-4. **Server-persisted library** — the studio already keeps a local (per-device) production library; move it to a backing store so it follows the creator across devices.
-5. **Team workspaces** — shared libraries, brand kits, and approval flows on top of the production model.
+4. **Team workspaces** — shared libraries, brand kits, and approval flows on top of the production model.
+5. **Direct publishing** — push finished cuts straight to the YouTube and LinkedIn APIs.
 
-Already shipped: a UI **voice picker** (incl. custom ElevenLabs IDs), MP4-preferred export, full-production JSON export, and a **local production library** that saves and re-opens every video on the device.
+Already shipped: a UI **voice picker** (incl. custom ElevenLabs IDs), MP4-preferred export, full-production JSON export, a **local production library**, and **cross-device sync** (Supabase, capability-key — no login).
+
+### Cross-device library (Supabase)
+
+Every production is saved locally. To sync across devices, open **☁ Sync across devices** in the library, set a secret **sync key** (a passphrase), and use the same key elsewhere. The model is capability-based — no accounts:
+
+- The `studio_library` table has **RLS on with no direct policies**; it can't be read or written directly.
+- All access goes through `SECURITY DEFINER` RPCs (`lib_list` / `lib_upsert` / `lib_delete`) scoped by the key. Knowing the key is the capability, so keep it private.
+- The publishable/anon key is safe to ship (it's designed to be public). A working project is baked in; override with `SUPABASE_URL` + `SUPABASE_ANON_KEY` for your own.
 
 ---
 

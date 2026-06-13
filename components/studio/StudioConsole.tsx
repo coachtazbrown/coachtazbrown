@@ -3,7 +3,18 @@
 import { useEffect, useRef, useState } from "react";
 import type { Cut, FactCheckItem, Production } from "@/lib/studio/types";
 import VideoPlayer from "./VideoPlayer";
-import { addToLibrary, loadLibrary, removeFromLibrary, type LibItem } from "./library";
+import { addToLibrary, loadLibrary, removeFromLibrary, saveLibrary, type LibItem } from "./library";
+import {
+  LIBKEY_RE,
+  cloudConfigured,
+  cloudDelete,
+  cloudList,
+  cloudSave,
+  generateLibKey,
+  loadLibKey,
+  mergeLibraries,
+  saveLibKey
+} from "./cloud";
 
 const STAGES = [
   { key: "research", label: "Researching the topic", sub: "live web search · gathering reputable sources" },
@@ -77,10 +88,68 @@ export default function StudioConsole() {
   const [activeCut, setActiveCut] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [library, setLibrary] = useState<LibItem[]>([]);
+  const [configured, setConfigured] = useState(false);
+  const [libKey, setLibKey] = useState("");
+  const [keyInput, setKeyInput] = useState("");
+  const [showKeyEditor, setShowKeyEditor] = useState(false);
+  const [syncing, setSyncing] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => () => { if (timerRef.current) clearInterval(timerRef.current); }, []);
-  useEffect(() => { setLibrary(loadLibrary()); }, []);
+
+  // Load local library + cloud status on mount, then pull the cloud library if a key is set.
+  useEffect(() => {
+    setLibrary(loadLibrary());
+    const key = loadLibKey();
+    setLibKey(key);
+    setKeyInput(key);
+    (async () => {
+      const ok = await cloudConfigured();
+      setConfigured(ok);
+      if (ok && key) await pullCloud(key);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  async function pullCloud(key: string) {
+    setSyncing(true);
+    try {
+      const cloud = await cloudList(key);
+      const merged = mergeLibraries(cloud, loadLibrary());
+      saveLibrary(merged);
+      setLibrary(merged);
+    } finally {
+      setSyncing(false);
+    }
+  }
+
+  function connectKey(raw: string) {
+    const key = raw.trim();
+    if (!LIBKEY_RE.test(key)) {
+      setError("A sync key must be 8–64 letters, numbers, dashes, or underscores.");
+      return;
+    }
+    setError(null);
+    saveLibKey(key);
+    setLibKey(key);
+    setShowKeyEditor(false);
+    // Push any local-only productions up, then pull the merged set down.
+    (async () => {
+      setSyncing(true);
+      try {
+        for (const it of loadLibrary()) await cloudSave(key, it.production);
+        await pullCloud(key);
+      } finally {
+        setSyncing(false);
+      }
+    })();
+  }
+
+  function disconnectKey() {
+    saveLibKey("");
+    setLibKey("");
+    setShowKeyEditor(false);
+  }
 
   function openSaved(item: LibItem) {
     setProd(item.production);
@@ -91,6 +160,7 @@ export default function StudioConsole() {
 
   function deleteSaved(id: string) {
     setLibrary(removeFromLibrary(id));
+    if (configured && libKey) void cloudDelete(libKey, id);
   }
 
   async function generate(t: string) {
@@ -116,6 +186,9 @@ export default function StudioConsole() {
       setProd(production);
       setActiveCut(0);
       setLibrary(addToLibrary(production));
+      if (configured && libKey) {
+        cloudSave(libKey, production).then(() => pullCloud(libKey));
+      }
     } catch (e: any) {
       setError(e?.message || "Something went wrong. Try the topic again.");
     } finally {
@@ -166,12 +239,65 @@ export default function StudioConsole() {
       {/* ── Studio library ── */}
       {library.length > 0 && (
         <div className="mt-6 rounded-3xl border border-ink/10 bg-white p-6">
-          <div className="mb-3 flex items-center justify-between">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
             <div className="text-xs font-semibold uppercase tracking-widest text-slate2">
               Your studio library
             </div>
-            <div className="text-xs text-slate2">{library.length} saved · stored on this device</div>
+            <div className="flex items-center gap-2 text-xs">
+              {syncing && <span className="text-accent">syncing…</span>}
+              {configured && libKey ? (
+                <>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-sage/15 px-2 py-0.5 text-sage">
+                    <span className="h-1.5 w-1.5 rounded-full bg-sage" /> Synced across devices
+                  </span>
+                  <button onClick={() => pullCloud(libKey)} className="text-slate2 underline hover:text-accent">
+                    Sync now
+                  </button>
+                  <button onClick={() => setShowKeyEditor((v) => !v)} className="text-slate2 underline hover:text-accent">
+                    Key
+                  </button>
+                </>
+              ) : configured ? (
+                <button onClick={() => setShowKeyEditor((v) => !v)} className="rounded-full border border-ink/15 px-2.5 py-0.5 text-slate2 hover:border-ink">
+                  ☁ Sync across devices
+                </button>
+              ) : (
+                <span className="text-slate2">{library.length} saved · on this device</span>
+              )}
+            </div>
           </div>
+
+          {showKeyEditor && configured && (
+            <div className="mb-4 rounded-2xl border border-ink/10 bg-bone p-4">
+              <div className="text-xs text-slate2">
+                Enter a secret <b>sync key</b> (a passphrase). Use the same key on any device to see this
+                library. Anyone with the key can read it — keep it private.
+              </div>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <input
+                  value={keyInput}
+                  onChange={(e) => setKeyInput(e.target.value)}
+                  onKeyDown={(e) => e.key === "Enter" && connectKey(keyInput)}
+                  placeholder="your-secret-sync-key"
+                  className="w-64 rounded-full border border-ink/15 bg-white px-4 py-2 text-sm outline-none focus:border-accent"
+                />
+                <button onClick={() => connectKey(keyInput)} className="btn-primary text-xs">
+                  {libKey ? "Update key" : "Connect"}
+                </button>
+                <button
+                  onClick={() => { const k = generateLibKey(); setKeyInput(k); }}
+                  className="btn-ghost text-xs"
+                >
+                  Generate
+                </button>
+                {libKey && (
+                  <button onClick={disconnectKey} className="text-xs text-slate2 underline hover:text-red-600">
+                    Disconnect this device
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
           <div className="flex flex-wrap gap-2">
             {library.map((item) => (
               <div
