@@ -70,11 +70,24 @@ Engine map:
 ## Deploy
 
 ```bash
-vercel deploy
-# set env: ANTHROPIC_API_KEY, AGENTS_MODEL (optional), AGENTS_DEMO_MODE (optional)
+vercel deploy        # or: vercel.com/new → import the repo → Deploy
 ```
 
-The marketing/training pages are fully static; the Studio is one dynamic API route.
+The marketing/training pages are fully static; the Studio is one dynamic API route. It deploys and runs with **zero env vars** (offline generation engine + the baked-in Supabase library both work out of the box).
+
+### Environment variables (all optional)
+
+Set these in **Vercel → Project → Settings → Environment Variables**, then **redeploy** — env vars only apply to *new* builds, so adding a key without redeploying changes nothing (a common gotcha).
+
+| Variable | What it unlocks | Without it |
+| --- | --- | --- |
+| `ANTHROPIC_API_KEY` | Live web research + per-claim fact-checking during generation | Offline engine (still grounded, still fact-checked from the corpus) |
+| `ELEVENLABS_API_KEY` | **Studio voice** — real ElevenLabs narration muxed into the export | Falls back to the browser voice |
+| `ELEVENLABS_VOICE_ID` | Override the default voice | Default `SAz9YHcvj6GT2YYXdXww` (must exist in the key's account) |
+| `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Point cross-device sync at your own Supabase project | Uses the baked-in project |
+| `AGENTS_MODEL`, `AGENTS_DEMO_MODE` | Model override / force the offline engine | Defaults |
+
+> **Studio voice not working after deploy?** It needs `ELEVENLABS_API_KEY` set **on the server** (local `.env.local` is never uploaded — it's gitignored), and the chosen voice ID must be present in that ElevenLabs account. Add the key, redeploy, and confirm the voice exists in the account.
 
 ---
 
