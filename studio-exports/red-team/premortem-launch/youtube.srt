@@ -1,0 +1,147 @@
+1
+00:00:00,000 --> 00:00:04,000
+The cheapest insurance for a product launch costs
+
+2
+00:00:04,000 --> 00:00:06,500
+one hour and zero dollars.
+
+3
+00:00:06,500 --> 00:00:10,500
+It's called a premortem, and here's exactly how
+
+4
+00:00:10,500 --> 00:00:12,000
+to run one.
+
+5
+00:00:12,000 --> 00:00:18,000
+Most launch risk reviews fail for one reason:
+
+6
+00:00:18,000 --> 00:00:24,000
+when you ask a hopeful team 'what could
+
+7
+00:00:24,000 --> 00:00:28,500
+go wrong', they protect the plan.
+
+8
+00:00:28,500 --> 00:00:34,500
+Optimism wins, and the real concerns stay in
+
+9
+00:00:34,500 --> 00:00:36,000
+people's heads.
+
+10
+00:00:36,000 --> 00:00:38,473
+The premortem flips it.
+
+11
+00:00:38,473 --> 00:00:43,418
+You don't ask if it could fail —
+
+12
+00:00:43,418 --> 00:00:46,509
+you state that it did.
+
+13
+00:00:46,509 --> 00:00:51,455
+It's six months from now, the launch was
+
+14
+00:00:51,455 --> 00:00:54,545
+a flop, that's a fact.
+
+15
+00:00:54,545 --> 00:00:59,491
+Now ask everyone, individually and silently, to write
+
+16
+00:00:59,491 --> 00:01:01,964
+down every reason why.
+
+17
+00:01:01,964 --> 00:01:06,909
+Prospective hindsight gives people permission to name what
+
+18
+00:01:06,909 --> 00:01:10,000
+they were afraid to say.
+
+19
+00:01:10,000 --> 00:01:12,125
+Facilitate it cleanly.
+
+20
+00:01:12,125 --> 00:01:17,792
+Two minutes silent and solo first — that
+
+21
+00:01:17,792 --> 00:01:23,458
+protects the junior and the quiet voices from
+
+22
+00:01:23,458 --> 00:01:27,708
+the loudest person in the room.
+
+23
+00:01:27,708 --> 00:01:33,375
+Then round-robin, one reason each, no debate, until
+
+24
+00:01:33,375 --> 00:01:36,208
+the list is empty.
+
+25
+00:01:36,208 --> 00:01:41,875
+Cluster, and pick the two or three you
+
+26
+00:01:41,875 --> 00:01:44,000
+can de-risk now.
+
+27
+00:01:44,000 --> 00:01:48,923
+Done right, a premortem doesn't make your team
+
+28
+00:01:48,923 --> 00:01:49,538
+negative.
+
+29
+00:01:49,538 --> 00:01:52,000
+It makes them honest.
+
+30
+00:01:52,000 --> 00:01:56,923
+You catch the dependency nobody owned and the
+
+31
+00:01:56,923 --> 00:02:01,846
+assumption everyone agreed with too fast — for
+
+32
+00:02:01,846 --> 00:02:06,769
+the price of one meeting instead of one
+
+33
+00:02:06,769 --> 00:02:08,000
+failed launch.
+
+34
+00:02:08,000 --> 00:02:13,538
+Here's your move: before your next launch, block
+
+35
+00:02:13,538 --> 00:02:17,000
+sixty minutes and run this.
+
+36
+00:02:17,000 --> 00:02:22,538
+Comment the launch you're about to ship and
+
+37
+00:02:22,538 --> 00:02:26,000
+I'll send the premortem checklist.

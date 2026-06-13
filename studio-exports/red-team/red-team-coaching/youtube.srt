@@ -1,0 +1,223 @@
+1
+00:00:00,000 --> 00:00:03,097
+The plan everyone in the room agreed with
+
+2
+00:00:03,097 --> 00:00:05,806
+is the one you should attack first.
+
+3
+00:00:05,806 --> 00:00:08,903
+Here's how the best teams red-team their own
+
+4
+00:00:08,903 --> 00:00:12,000
+strategy — before reality does it for them.
+
+5
+00:00:12,000 --> 00:00:16,400
+In the next few minutes you'll get three
+
+6
+00:00:16,400 --> 00:00:20,800
+red-team moves your team can run on any
+
+7
+00:00:20,800 --> 00:00:25,200
+big decision, why they work, and how they
+
+8
+00:00:25,200 --> 00:00:29,050
+turn into a capability your organization owns.
+
+9
+00:00:29,050 --> 00:00:33,450
+The third one is the one most leaders
+
+10
+00:00:33,450 --> 00:00:34,000
+skip.
+
+11
+00:00:34,000 --> 00:00:38,333
+Most strategies don't fail on bad logic.
+
+12
+00:00:38,333 --> 00:00:43,286
+They fail on one assumption nobody was paid
+
+13
+00:00:43,286 --> 00:00:48,238
+to attack — and on a room that
+
+14
+00:00:48,238 --> 00:00:50,095
+agreed too fast.
+
+15
+00:00:50,095 --> 00:00:53,190
+That fast agreement isn't safety.
+
+16
+00:00:53,190 --> 00:00:58,143
+It's groupthink, and it has a name because
+
+17
+00:00:58,143 --> 00:01:00,000
+it's that common.
+
+18
+00:01:00,000 --> 00:01:03,608
+Move one: the premortem.
+
+19
+00:01:03,608 --> 00:01:10,824
+Don't ask what could go wrong — that
+
+20
+00:01:10,824 --> 00:01:12,627
+invites optimism.
+
+21
+00:01:12,627 --> 00:01:17,137
+State the failure as fact.
+
+22
+00:01:17,137 --> 00:01:24,353
+It's eighteen months from now and this decision
+
+23
+00:01:24,353 --> 00:01:26,157
+failed completely.
+
+24
+00:01:26,157 --> 00:01:30,667
+Now every person writes why.
+
+25
+00:01:30,667 --> 00:01:37,882
+The cheapest place to find a fatal flaw
+
+26
+00:01:37,882 --> 00:01:45,098
+is here, on the whiteboard, not after the
+
+27
+00:01:45,098 --> 00:01:46,000
+launch.
+
+28
+00:01:46,000 --> 00:01:51,617
+Move two: the key assumptions check.
+
+29
+00:01:51,617 --> 00:01:59,106
+Rewrite the plan as a list of beliefs,
+
+30
+00:01:59,106 --> 00:02:03,787
+each a single falsifiable sentence.
+
+31
+00:02:03,787 --> 00:02:11,277
+Score each one: how confident are we, and
+
+32
+00:02:11,277 --> 00:02:17,830
+how bad is it if we're wrong?
+
+33
+00:02:17,830 --> 00:02:25,319
+The low-confidence, high-consequence assumptions are your real strategy
+
+34
+00:02:25,319 --> 00:02:26,255
+risk.
+
+35
+00:02:26,255 --> 00:02:30,000
+Everything else is noise.
+
+36
+00:02:30,000 --> 00:02:37,000
+Move three, the one leaders skip: assign the
+
+37
+00:02:37,000 --> 00:02:37,875
+dissent.
+
+38
+00:02:37,875 --> 00:02:44,875
+Don't hope someone speaks up — give one
+
+39
+00:02:44,875 --> 00:02:51,875
+person the job of arguing the other side.
+
+40
+00:02:51,875 --> 00:02:58,875
+The devil's advocate isn't new; institutions formalized it
+
+41
+00:02:58,875 --> 00:03:05,875
+centuries ago precisely because volunteered dissent never comes.
+
+42
+00:03:05,875 --> 00:03:12,000
+Make it a role, not a personality.
+
+43
+00:03:12,000 --> 00:03:15,778
+Run these and something changes.
+
+44
+00:03:15,778 --> 00:03:21,822
+The team stops defending decisions and starts pressure-testing
+
+45
+00:03:21,822 --> 00:03:22,578
+them.
+
+46
+00:03:22,578 --> 00:03:28,622
+For a business, that's the real opportunity: decision
+
+47
+00:03:28,622 --> 00:03:34,667
+quality becomes a repeatable capability you own, not
+
+48
+00:03:34,667 --> 00:03:37,689
+a report you rent.
+
+49
+00:03:37,689 --> 00:03:43,733
+Wins compound, and the cost of being wrong
+
+50
+00:03:43,733 --> 00:03:46,000
+drops every quarter.
+
+51
+00:03:46,000 --> 00:03:50,400
+Here's the one judgment call a video can't
+
+52
+00:03:50,400 --> 00:03:54,800
+make for you: which decision, right now, is
+
+53
+00:03:54,800 --> 00:03:57,550
+too important to leave unchallenged?
+
+54
+00:03:57,550 --> 00:04:00,850
+Bring that one to a session.
+
+55
+00:04:00,850 --> 00:04:05,250
+Comment the decision you're facing, and grab the
+
+56
+00:04:05,250 --> 00:04:08,000
+premortem checklist in the description.

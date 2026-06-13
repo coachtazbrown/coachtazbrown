@@ -1,0 +1,79 @@
+1
+00:00:00,000 --> 00:00:02,882
+Most strategies don't fail on bad logic.
+
+2
+00:00:02,882 --> 00:00:06,176
+They fail on one assumption nobody was paid
+
+3
+00:00:06,176 --> 00:00:07,000
+to attack.
+
+4
+00:00:07,000 --> 00:00:08,517
+That's red team coaching.
+
+5
+00:00:08,517 --> 00:00:11,552
+Not a sixty-page deck — coaching your team
+
+6
+00:00:11,552 --> 00:00:14,586
+to think like the competitor, the regulator, and
+
+7
+00:00:14,586 --> 00:00:17,621
+the angry customer, before reality does it for
+
+8
+00:00:17,621 --> 00:00:18,000
+you.
+
+9
+00:00:18,000 --> 00:00:21,097
+The cheapest place to find a fatal flaw
+
+10
+00:00:21,097 --> 00:00:22,645
+is on the whiteboard.
+
+11
+00:00:22,645 --> 00:00:25,355
+The most expensive is after the launch.
+
+12
+00:00:25,355 --> 00:00:28,452
+A premortem flips it: it's eighteen months out,
+
+13
+00:00:28,452 --> 00:00:30,000
+this failed — why?
+
+14
+00:00:30,000 --> 00:00:33,097
+In one session a team surfaces the assumption
+
+15
+00:00:33,097 --> 00:00:36,194
+they agreed with too fast, stress-tests the plan,
+
+16
+00:00:36,194 --> 00:00:38,516
+and leaves with owned, dated actions.
+
+17
+00:00:38,516 --> 00:00:41,613
+Decision quality as a capability — installed, not
+
+18
+00:00:41,613 --> 00:00:42,000
+rented.
+
+19
+00:00:42,000 --> 00:00:46,267
+What's the last big decision your team made
+
+20
+00:00:46,267 --> 00:00:50,000
+that nobody was asked to argue against?

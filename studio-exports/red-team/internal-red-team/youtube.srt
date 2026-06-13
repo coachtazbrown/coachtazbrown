@@ -1,0 +1,163 @@
+1
+00:00:00,000 --> 00:00:03,500
+Hiring an outside red team is easy.
+
+2
+00:00:03,500 --> 00:00:07,500
+Building one your own organization owns — that's
+
+3
+00:00:07,500 --> 00:00:09,000
+the real advantage.
+
+4
+00:00:09,000 --> 00:00:12,000
+Here's how to stand one up.
+
+5
+00:00:12,000 --> 00:00:15,652
+First, what a red team actually is.
+
+6
+00:00:15,652 --> 00:00:19,826
+Borrowed from military and intelligence practice and adapted
+
+7
+00:00:19,826 --> 00:00:24,000
+for business, it's structured contrarian analysis: a group
+
+8
+00:00:24,000 --> 00:00:28,174
+whose job is to attack a plan on
+
+9
+00:00:28,174 --> 00:00:32,348
+purpose, so its blind spots show up in
+
+10
+00:00:32,348 --> 00:00:36,000
+a meeting instead of in the market.
+
+11
+00:00:36,000 --> 00:00:38,240
+Step one: the charter.
+
+12
+00:00:38,240 --> 00:00:42,720
+Write down what the red team exists to
+
+13
+00:00:42,720 --> 00:00:45,520
+do and what it doesn't.
+
+14
+00:00:45,520 --> 00:00:50,000
+It is not the department of no, and
+
+15
+00:00:50,000 --> 00:00:53,920
+it is not there to grade people.
+
+16
+00:00:53,920 --> 00:00:58,400
+Its single job: make every major decision survive
+
+17
+00:00:58,400 --> 00:01:02,880
+a serious, structured challenge before the company commits
+
+18
+00:01:02,880 --> 00:01:04,000
+to it.
+
+19
+00:01:04,000 --> 00:01:07,797
+Step two, and this is the one most
+
+20
+00:01:07,797 --> 00:01:09,695
+companies get wrong: independence.
+
+21
+00:01:09,695 --> 00:01:13,492
+If the red team reports to the executive
+
+22
+00:01:13,492 --> 00:01:17,288
+who owns the plan, it will pull its
+
+23
+00:01:17,288 --> 00:01:21,085
+punches and tell that person what they want
+
+24
+00:01:21,085 --> 00:01:22,034
+to hear.
+
+25
+00:01:22,034 --> 00:01:25,831
+Give it a separate reporting line and explicit
+
+26
+00:01:25,831 --> 00:01:28,678
+air cover to deliver bad news.
+
+27
+00:01:28,678 --> 00:01:32,000
+Independence is what makes it worth having.
+
+28
+00:01:32,000 --> 00:01:36,000
+Step three: cadence and method, so it's a
+
+29
+00:01:36,000 --> 00:01:38,500
+capability and not a stunt.
+
+30
+00:01:38,500 --> 00:01:42,500
+Pick a rhythm — every major bet, or
+
+31
+00:01:42,500 --> 00:01:46,000
+every quarter — and a repeatable method.
+
+32
+00:01:46,000 --> 00:01:50,000
+Run a key assumptions check: rewrite the plan
+
+33
+00:01:50,000 --> 00:01:54,000
+as falsifiable beliefs and score each by confidence
+
+34
+00:01:54,000 --> 00:01:55,000
+and consequence.
+
+35
+00:01:55,000 --> 00:01:56,500
+Then a premortem.
+
+36
+00:01:56,500 --> 00:02:00,500
+Same moves, every time, so the team gets
+
+37
+00:02:00,500 --> 00:02:02,000
+sharper with reps.
+
+38
+00:02:02,000 --> 00:02:07,333
+Start small: one charter, one independent owner, one
+
+39
+00:02:07,333 --> 00:02:09,333
+decision next quarter.
+
+40
+00:02:09,333 --> 00:02:14,667
+Comment the decision you'd point your first red
+
+41
+00:02:14,667 --> 00:02:20,000
+team at, and I'll send the starter charter.
