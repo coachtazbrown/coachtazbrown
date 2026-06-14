@@ -14,10 +14,9 @@ const Schema = z.object({
     .optional()
 });
 
-// Pinned default: the ElevenLabs voice Taz selected for Nia. It must be added
-// to the ElevenLabs account whose key is in ELEVENLABS_API_KEY so it resolves;
-// if it doesn't, the call fails and the client falls back to the browser
-// voice. ELEVENLABS_VOICE_ID still overrides this at runtime.
+// Pinned default voice. It must exist in the ElevenLabs account whose key is in
+// ELEVENLABS_API_KEY so it resolves; if it doesn't, the call fails and the client
+// falls back to the browser voice. ELEVENLABS_VOICE_ID still overrides this.
 const DEFAULT_VOICE_ID = "CMlaXsNkOUgEvTGpIezg";
 const DEFAULT_MODEL_ID = "eleven_multilingual_v2";
 
@@ -74,7 +73,7 @@ export async function POST(req: Request) {
 
     if (!res.ok || !res.body) {
       console.error("[voice] elevenlabs", res.status, await res.text().catch(() => ""));
-      return NextResponse.json({ fallback: true, reason: "provider_error" });
+      return NextResponse.json({ fallback: true, reason: "provider_error", status: res.status });
     }
 
     const audio = await res.arrayBuffer();
