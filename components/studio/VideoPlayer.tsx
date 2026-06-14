@@ -36,11 +36,12 @@ const COL = {
   white: "#FFFFFF"
 };
 
-// Selectable studio voices. "" = the pinned default (Nia). The rest are common
-// ElevenLabs library voices; each must be available to the account behind
-// ELEVENLABS_API_KEY, or the call falls back to the browser voice.
+// Selectable studio voices. "" = the server default (DEFAULT_VOICE_ID, overridable
+// via ELEVENLABS_VOICE_ID). The rest are common ElevenLabs library voices; each
+// must be available to the account behind ELEVENLABS_API_KEY, or the call falls
+// back to the browser voice.
 const VOICES: { id: string; name: string }[] = [
-  { id: "", name: "Default (Nia)" },
+  { id: "", name: "Default (studio)" },
   { id: "21m00Tcm4TlvDq8ikWAM", name: "Rachel" },
   { id: "pNInz6obpgDQGcFmaJgB", name: "Adam" },
   { id: "EXAVITQu4vr4xnSDxMaL", name: "Bella" },
