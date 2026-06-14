@@ -83,7 +83,7 @@ Set these in **Vercel → Project → Settings → Environment Variables**, then
 | --- | --- | --- |
 | `ANTHROPIC_API_KEY` | Live web research + per-claim fact-checking during generation | Offline engine (still grounded, still fact-checked from the corpus) |
 | `ELEVENLABS_API_KEY` | **Studio voice** — real ElevenLabs narration muxed into the export | Falls back to the browser voice |
-| `ELEVENLABS_VOICE_ID` | Override the default voice | Default `SAz9YHcvj6GT2YYXdXww` (must exist in the key's account) |
+| `ELEVENLABS_VOICE_ID` | Override the default voice | Default `CMlaXsNkOUgEvTGpIezg` (must exist in the key's account) |
 | `SUPABASE_URL` / `SUPABASE_ANON_KEY` | Point cross-device sync at your own Supabase project | Uses the baked-in project |
 | `AGENTS_MODEL`, `AGENTS_DEMO_MODE` | Model override / force the offline engine | Defaults |
 

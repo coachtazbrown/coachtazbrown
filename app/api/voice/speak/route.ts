@@ -18,7 +18,7 @@ const Schema = z.object({
 // to the ElevenLabs account whose key is in ELEVENLABS_API_KEY so it resolves;
 // if it doesn't, the call fails and the client falls back to the browser
 // voice. ELEVENLABS_VOICE_ID still overrides this at runtime.
-const DEFAULT_VOICE_ID = "SAz9YHcvj6GT2YYXdXww";
+const DEFAULT_VOICE_ID = "CMlaXsNkOUgEvTGpIezg";
 const DEFAULT_MODEL_ID = "eleven_multilingual_v2";
 
 // Strip the bits that read badly aloud (markdown bold, arrows, bullets).
