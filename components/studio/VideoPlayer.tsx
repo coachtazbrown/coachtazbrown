@@ -2,7 +2,7 @@
 
 // Galactic Studio — the faceless video renderer.
 //
-// A real video engine, not a mockup. It plays a Cut on a 16:9 canvas: an
+// A real video engine, not a mockup. It plays a Cut on a 16:9 or 9:16 canvas: an
 // animated galaxy backdrop, a per-scene motif, kinetic keyword typography,
 // burned-in word-by-word captions synced to the timeline, and spoken voiceover.
 //
@@ -17,8 +17,14 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import type { Cut, Motif, Scene } from "@/lib/studio/types";
 
-const W = 1280;
-const H = 720; // 16:9
+// Render dimensions per aspect. 16:9 for YouTube/LinkedIn, 9:16 for
+// Reels/Shorts/TikTok. The whole renderer is center/relative-anchored, so it
+// adapts to either by swapping these.
+const DIMS = {
+  "16:9": { W: 1280, H: 720 },
+  "9:16": { W: 720, H: 1280 }
+} as const;
+type AspectKey = keyof typeof DIMS;
 
 const COL = {
   bg0: "#06060F",
@@ -46,12 +52,12 @@ const VOICE_ID_RE = /^[A-Za-z0-9]{1,40}$/;
 
 type Star = { x: number; y: number; r: number; tw: number; sp: number };
 
-function makeStars(n: number): Star[] {
+function makeStars(n: number, w: number, h: number): Star[] {
   const stars: Star[] = [];
   for (let i = 0; i < n; i++) {
     stars.push({
-      x: Math.random() * W,
-      y: Math.random() * H,
+      x: Math.random() * w,
+      y: Math.random() * h,
       r: Math.random() * 1.6 + 0.3,
       tw: Math.random() * Math.PI * 2,
       sp: Math.random() * 0.6 + 0.2
@@ -89,7 +95,7 @@ function wrap(ctx: CanvasRenderingContext2D, text: string, maxW: number): string
 
 export default function VideoPlayer({ cut }: { cut: Cut }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const starsRef = useRef<Star[]>(makeStars(140));
+  const starsRef = useRef<Star[]>(makeStars(140, DIMS["16:9"].W, DIMS["16:9"].H));
   const rafRef = useRef<number>(0);
   const offsetRef = useRef(0);
   const playStartRef = useRef(0);
@@ -108,6 +114,8 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
   const [voiceLoading, setVoiceLoading] = useState(false);
   const [voiceId, setVoiceId] = useState(""); // dropdown selection ("" | id | "__custom__")
   const [customId, setCustomId] = useState("");
+  const [aspect, setAspect] = useState<AspectKey>(cut.aspect === "9:16" ? "9:16" : "16:9");
+  const { W, H } = DIMS[aspect];
 
   const effectiveVoice = () => (voiceId === "__custom__" ? customId.trim() : voiceId);
   const [durations, setDurations] = useState<number[] | null>(null); // per-scene seconds when studio voice paces the cut
@@ -385,8 +393,21 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         playSceneVoice(idx, scene);
       }
     },
-    [sceneAt, playSceneVoice, total]
+    [sceneAt, playSceneVoice, total, W, H]
   );
+
+  // Re-lay the starfield and repaint when the aspect (16:9 ↔ 9:16) changes.
+  useEffect(() => {
+    cancelAnimationFrame(rafRef.current);
+    stopAudio();
+    starsRef.current = makeStars(140, W, H);
+    offsetRef.current = 0;
+    spokenRef.current = -1;
+    setT(0);
+    setPlaying(false);
+    render(0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [aspect]);
 
   // ── Animation loop ──────────────────────────────────────────────────────────
   useEffect(() => {
@@ -579,7 +600,7 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `galactic-studio-${cut.platform}-${Date.now()}.${ext}`;
+      a.download = `galactic-studio-${cut.platform}-${aspect.replace(":", "x")}-${Date.now()}.${ext}`;
       a.click();
       URL.revokeObjectURL(url);
     };
@@ -598,8 +619,8 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         ref={canvasRef}
         width={W}
         height={H}
-        className="block w-full"
-        style={{ aspectRatio: "16 / 9" }}
+        className={aspect === "9:16" ? "mx-auto block h-[70vh] w-auto" : "block w-full"}
+        style={{ aspectRatio: aspect === "9:16" ? "9 / 16" : "16 / 9" }}
         onClick={play}
       />
       <div className="flex flex-wrap items-center gap-2 border-t border-white/10 bg-[#0B0A18] px-4 py-3 text-bone">
@@ -612,6 +633,14 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
         </button>
         <button onClick={restart} className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-bone hover:border-white/50">
           ↺ Restart
+        </button>
+        <button
+          onClick={() => setAspect((a) => (a === "16:9" ? "9:16" : "16:9"))}
+          disabled={recording}
+          className="rounded-full border border-white/20 px-3 py-1.5 text-sm text-bone hover:border-white/50 disabled:opacity-50"
+          title="Switch between landscape (16:9) and vertical (9:16) for Reels / Shorts / TikTok"
+        >
+          {aspect === "16:9" ? "▭ 16:9" : "▯ 9:16"}
         </button>
         <button
           onClick={() => {
