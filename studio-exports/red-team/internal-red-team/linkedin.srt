@@ -1,0 +1,75 @@
+1
+00:00:00,000 --> 00:00:03,500
+You don't need to hire a firm to
+
+2
+00:00:03,500 --> 00:00:04,813
+red-team your strategy.
+
+3
+00:00:04,813 --> 00:00:07,000
+You can build it in-house.
+
+4
+00:00:07,000 --> 00:00:08,964
+One: give it a charter.
+
+5
+00:00:08,964 --> 00:00:12,107
+The red team's job isn't to be negative
+
+6
+00:00:12,107 --> 00:00:15,250
+— it's to make every big plan survive
+
+7
+00:00:15,250 --> 00:00:18,000
+a serious, structured attack before you commit.
+
+8
+00:00:18,000 --> 00:00:19,920
+Two: protect its independence.
+
+9
+00:00:19,920 --> 00:00:23,760
+A red team that reports to the person
+
+10
+00:00:23,760 --> 00:00:27,600
+who owns the plan will pull its punches.
+
+11
+00:00:27,600 --> 00:00:30,000
+Independence is the entire point.
+
+12
+00:00:30,000 --> 00:00:32,743
+Three: give it a cadence and a method.
+
+13
+00:00:32,743 --> 00:00:35,486
+Run a key assumptions check and a premortem
+
+14
+00:00:35,486 --> 00:00:38,229
+on every major bet — same rhythm, every
+
+15
+00:00:38,229 --> 00:00:38,571
+quarter.
+
+16
+00:00:38,571 --> 00:00:41,314
+That's what turns it from a stunt into
+
+17
+00:00:41,314 --> 00:00:42,000
+a capability.
+
+18
+00:00:42,000 --> 00:00:46,000
+If you started one next quarter, which decision
+
+19
+00:00:46,000 --> 00:00:49,000
+would you point it at first?

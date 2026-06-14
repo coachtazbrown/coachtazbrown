@@ -1,0 +1,63 @@
+1
+00:00:00,000 --> 00:00:05,091
+Before your next launch, run the one meeting
+
+2
+00:00:05,091 --> 00:00:07,000
+most teams skip.
+
+3
+00:00:07,000 --> 00:00:08,692
+It's called a premortem.
+
+4
+00:00:08,692 --> 00:00:12,077
+Don't ask what could go wrong — assume
+
+5
+00:00:12,077 --> 00:00:13,346
+it already did.
+
+6
+00:00:13,346 --> 00:00:16,308
+It's six months later, the launch flopped.
+
+7
+00:00:16,308 --> 00:00:18,000
+Now everyone writes why.
+
+8
+00:00:18,000 --> 00:00:20,500
+That small flip changes everything.
+
+9
+00:00:20,500 --> 00:00:24,500
+People say the concern they were sitting on.
+
+10
+00:00:24,500 --> 00:00:26,500
+The dependency nobody owned.
+
+11
+00:00:26,500 --> 00:00:30,000
+The assumption everyone agreed with too fast.
+
+12
+00:00:30,000 --> 00:00:33,810
+Thirty minutes of that, and you walk out
+
+13
+00:00:33,810 --> 00:00:37,619
+with the two or three risks worth fixing
+
+14
+00:00:37,619 --> 00:00:40,000
+— while they're still cheap.
+
+15
+00:00:40,000 --> 00:00:43,500
+What's the one thing that, if your launch
+
+16
+00:00:43,500 --> 00:00:47,000
+failed, you already suspect would be the reason?
