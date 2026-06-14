@@ -51,6 +51,20 @@ const VOICES: { id: string; name: string }[] = [
 
 const VOICE_ID_RE = /^[A-Za-z0-9]{1,40}$/;
 
+// Turn a /api/voice/speak fallback into an actionable message so the user knows
+// whether it's a missing key, a rejected key, or a voice that isn't in the account.
+function voiceFailureMessage(reason?: string, status?: number): string {
+  if (reason === "no_key")
+    return "Studio voice is off: no ELEVENLABS_API_KEY is set on the server. Add it to your host's Production environment variables and redeploy.";
+  if (status === 401)
+    return "Studio voice failed: ElevenLabs rejected the API key (401). It's likely invalid or was rotated — update ELEVENLABS_API_KEY on the server and redeploy.";
+  if (status === 404)
+    return "Studio voice failed: that voice ID wasn't found in this ElevenLabs account (404). Use an API key from the account that owns the voice, or pick a different voice.";
+  if (status === 422 || status === 400)
+    return "Studio voice failed: ElevenLabs rejected the voice/request (" + status + "). Check the voice ID is valid for this account.";
+  return "Studio voice is unavailable, so it's staying on the browser voice. Check the server's ELEVENLABS_API_KEY and that the voice exists in that account.";
+}
+
 type Star = { x: number; y: number; r: number; tw: number; sp: number };
 
 function makeStars(n: number, w: number, h: number): Star[] {
@@ -491,6 +505,8 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
     cancelAnimationFrame(rafRef.current);
     stopAudio();
     setPlaying(false);
+    let failReason: string | undefined;
+    let failStatus: number | undefined;
     try {
       const Ctx = (window.AudioContext || (window as any).webkitAudioContext) as typeof AudioContext;
       if (!audioCtxRef.current) {
@@ -507,7 +523,15 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
           body: JSON.stringify({ text: s.voiceover, ...(vid ? { voiceId: vid } : {}) })
         });
         const ctype = res.headers.get("content-type") || "";
-        if (!res.ok || !ctype.includes("audio")) throw new Error("no_studio_voice");
+        if (!res.ok || !ctype.includes("audio")) {
+          let info: { reason?: string; status?: number } = {};
+          try {
+            info = await res.json();
+          } catch {}
+          failReason = info.reason;
+          failStatus = info.status;
+          throw new Error("no_studio_voice");
+        }
         const ab = await res.arrayBuffer();
         const buf = await audioCtxRef.current.decodeAudioData(ab);
         buffers.push(buf);
@@ -523,9 +547,7 @@ export default function VideoPlayer({ cut }: { cut: Cut }) {
       buffersRef.current = [];
       setStudioVoice(false);
       setDurations(null);
-      alert(
-        "Studio voice needs an ELEVENLABS_API_KEY on the server (and the chosen voice added to that account). Staying on the browser voice for now."
-      );
+      alert(voiceFailureMessage(failReason, failStatus));
     } finally {
       setVoiceLoading(false);
     }
