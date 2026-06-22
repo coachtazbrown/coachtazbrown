@@ -67,6 +67,4 @@ Edit [`sites.config.json`](./sites.config.json):
 }
 ```
 
-> **Note:** `flowproof.strategies.com` is listed exactly as provided. It didn't
-> resolve during setup — if it's meant to be `flowproofstrategies.com` (or a
-> different host), fix `baseUrl` here and the audit will pick it up.
+Add a site or page by editing the array — the audit picks it up on the next run.
