@@ -1,5 +1,8 @@
 import Link from "next/link";
 import { CORPUS_SIZE } from "@/lib/studio/demo";
+import { pageMetadata } from "@/lib/seo/site";
+
+export const metadata = pageMetadata({ path: "/" });
 
 const STEPS = [
   { n: "01", t: "You give a topic", d: "One line. That's the whole input. No script, no storyboard, no editing timeline." },

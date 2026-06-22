@@ -1,0 +1,22 @@
+{
+  "thresholds": {
+    "minScore": 70
+  },
+  "sites": [
+    {
+      "name": "Taz Brown Strategies",
+      "baseUrl": "https://tazbrownstrategies.com",
+      "pages": ["/", "/method", "/pricing", "/training"]
+    },
+    {
+      "name": "Not Theater",
+      "baseUrl": "https://notheater.app",
+      "pages": ["/"]
+    },
+    {
+      "name": "FlowProof Strategies",
+      "baseUrl": "https://flowproof.strategies.com",
+      "pages": ["/"]
+    }
+  ]
+}

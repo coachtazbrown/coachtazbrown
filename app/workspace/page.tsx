@@ -2,8 +2,13 @@ import Link from "next/link";
 import RedTeamChat from "@/components/RedTeamChat";
 import { REDTEAM_DEFAULT_CONFIG } from "@/lib/redteam-config";
 import { RED_TEAM_LINEAGE, VALUE_LADDER } from "@/lib/redteam-knowledge";
+import { pageMetadata } from "@/lib/seo/site";
 
-export const metadata = { title: "Red Teaming Partner — Taz Brown Strategies" };
+export const metadata = pageMetadata({
+  titleAbsolute: "Red Teaming Partner — Taz Brown Strategies",
+  path: "/workspace",
+  noindex: true
+});
 
 export default function RedTeamPage() {
   const cfg = REDTEAM_DEFAULT_CONFIG;

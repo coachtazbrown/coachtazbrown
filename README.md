@@ -91,6 +91,19 @@ Set these in **Vercel → Project → Settings → Environment Variables**, then
 
 ---
 
+## SEO (automated)
+
+SEO is handled in two layers — see [`seo/README.md`](seo/README.md):
+
+- **On-page, by default.** `app/sitemap.ts`, `app/robots.ts`, `app/manifest.ts`,
+  a generated `opengraph-image`/`icon`, JSON-LD, and a `pageMetadata()` helper
+  (canonical + Open Graph + Twitter + robots in one call) all derive from
+  `lib/seo/site.ts`. Set `NEXT_PUBLIC_SITE_URL` per deployment and the same
+  codebase emits correct SEO for any domain.
+- **Off-page monitoring.** `npm run seo:audit` scores the live sites in
+  `seo/sites.config.json` against an SEO checklist; a weekly GitHub Action
+  (`.github/workflows/seo-audit.yml`) runs it and commits the report.
+
 ## What to build next (in priority order)
 
 1. **Cloud render to MP4** — render the canvas server-side (e.g. headless + ffmpeg) for a universally-compatible MP4. The studio voice is already muxed into the client-side `.webm` export today.

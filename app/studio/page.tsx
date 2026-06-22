@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
 import StudioConsole from "@/components/studio/StudioConsole";
 import { CORPUS_SIZE } from "@/lib/studio/demo";
+import { pageMetadata } from "@/lib/seo/site";
 
-export const metadata: Metadata = {
-  title: "The Studio — Galactic Studio by Taz",
+export const metadata = pageMetadata({
+  title: "The Studio",
+  path: "/studio",
   description:
-    "Give it a topic. Get a fact-checked, RAG-grounded faceless video for YouTube and a 16:9 short for LinkedIn — script, scenes, captions, voiceover, and packaging included."
-};
+    "Give it a topic. Get a fact-checked, RAG-grounded faceless video for YouTube and a 16:9 short for LinkedIn — script, scenes, captions, voiceover, and packaging included.",
+  keywords: ["faceless video", "AI video generator", "YouTube automation", "LinkedIn video", "fact-checked AI"]
+});
 
 export default function StudioPage() {
   return (

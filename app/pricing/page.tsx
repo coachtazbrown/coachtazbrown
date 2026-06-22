@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { VALUE_LADDER } from "@/lib/redteam-knowledge";
+import { pageMetadata } from "@/lib/seo/site";
 
-export const metadata = { title: "Engagements — Taz Brown Strategies" };
+export const metadata = pageMetadata({
+  titleAbsolute: "Engagements — Taz Brown Strategies",
+  path: "/pricing",
+  description:
+    "Engagement tiers for Taz Brown Strategies: from a single facilitated Key Assumptions Check or premortem on a live decision, up to ongoing red-teaming retainers."
+});
 
 const TIERS = [
   {
