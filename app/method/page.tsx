@@ -5,8 +5,14 @@ import {
   THINKING_MODELS,
   VALUE_LADDER
 } from "@/lib/redteam-knowledge";
+import { pageMetadata } from "@/lib/seo/site";
 
-export const metadata = { title: "The method — Taz Brown Strategies" };
+export const metadata = pageMetadata({
+  titleAbsolute: "The method — Taz Brown Strategies",
+  path: "/method",
+  description:
+    "Red teaming is 400 years of structures built so a claim has to survive an opponent. Taz Brown Strategies works the whole lineage — Key Assumptions Checks, premortems, and the thinking models behind them."
+});
 
 export default function MethodPage() {
   return (
