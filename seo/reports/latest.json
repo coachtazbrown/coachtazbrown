@@ -1,0 +1,942 @@
+{
+  "date": "2026-09-21",
+  "minScore": 70,
+  "results": [
+    {
+      "name": "Taz Brown Strategies",
+      "baseUrl": "https://tazbrownstrategies.com",
+      "pages": [
+        {
+          "url": "https://tazbrownstrategies.com",
+          "status": 200,
+          "score": 88,
+          "checks": [
+            {
+              "label": "HTTP 200",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "status 200"
+            },
+            {
+              "label": "Title tag",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+            },
+            {
+              "label": "Title length 10–60",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "56 chars"
+            },
+            {
+              "label": "Meta description",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "171 chars"
+            },
+            {
+              "label": "Description length 50–160",
+              "weight": 4,
+              "earned": 1.6,
+              "ok": false,
+              "detail": ""
+            },
+            {
+              "label": "Canonical URL",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "https://tazbrownstrategies.com/"
+            },
+            {
+              "label": "Indexable (not noindex)",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "index, follow"
+            },
+            {
+              "label": "Viewport meta",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "html lang",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "en"
+            },
+            {
+              "label": "og:title",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:description",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:image",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "present"
+            },
+            {
+              "label": "og:url",
+              "weight": 3,
+              "earned": 3,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:type",
+              "weight": 2,
+              "earned": 2,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "twitter:card",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "JSON-LD structured data",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Exactly one <h1>",
+              "weight": 6,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 found"
+            },
+            {
+              "label": "Image alt coverage",
+              "weight": 5,
+              "earned": 5,
+              "ok": true,
+              "detail": "0/0"
+            },
+            {
+              "label": "Substantive content (≥250 words)",
+              "weight": 4,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 words"
+            }
+          ],
+          "reachable": true
+        },
+        {
+          "url": "https://tazbrownstrategies.com/method",
+          "status": 200,
+          "score": 88,
+          "checks": [
+            {
+              "label": "HTTP 200",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "status 200"
+            },
+            {
+              "label": "Title tag",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+            },
+            {
+              "label": "Title length 10–60",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "56 chars"
+            },
+            {
+              "label": "Meta description",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "171 chars"
+            },
+            {
+              "label": "Description length 50–160",
+              "weight": 4,
+              "earned": 1.6,
+              "ok": false,
+              "detail": ""
+            },
+            {
+              "label": "Canonical URL",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "https://tazbrownstrategies.com/"
+            },
+            {
+              "label": "Indexable (not noindex)",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "index, follow"
+            },
+            {
+              "label": "Viewport meta",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "html lang",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "en"
+            },
+            {
+              "label": "og:title",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:description",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:image",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "present"
+            },
+            {
+              "label": "og:url",
+              "weight": 3,
+              "earned": 3,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:type",
+              "weight": 2,
+              "earned": 2,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "twitter:card",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "JSON-LD structured data",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Exactly one <h1>",
+              "weight": 6,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 found"
+            },
+            {
+              "label": "Image alt coverage",
+              "weight": 5,
+              "earned": 5,
+              "ok": true,
+              "detail": "0/0"
+            },
+            {
+              "label": "Substantive content (≥250 words)",
+              "weight": 4,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 words"
+            }
+          ],
+          "reachable": true
+        },
+        {
+          "url": "https://tazbrownstrategies.com/pricing",
+          "status": 200,
+          "score": 88,
+          "checks": [
+            {
+              "label": "HTTP 200",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "status 200"
+            },
+            {
+              "label": "Title tag",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+            },
+            {
+              "label": "Title length 10–60",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "56 chars"
+            },
+            {
+              "label": "Meta description",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "171 chars"
+            },
+            {
+              "label": "Description length 50–160",
+              "weight": 4,
+              "earned": 1.6,
+              "ok": false,
+              "detail": ""
+            },
+            {
+              "label": "Canonical URL",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "https://tazbrownstrategies.com/"
+            },
+            {
+              "label": "Indexable (not noindex)",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "index, follow"
+            },
+            {
+              "label": "Viewport meta",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "html lang",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "en"
+            },
+            {
+              "label": "og:title",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:description",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:image",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "present"
+            },
+            {
+              "label": "og:url",
+              "weight": 3,
+              "earned": 3,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:type",
+              "weight": 2,
+              "earned": 2,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "twitter:card",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "JSON-LD structured data",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Exactly one <h1>",
+              "weight": 6,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 found"
+            },
+            {
+              "label": "Image alt coverage",
+              "weight": 5,
+              "earned": 5,
+              "ok": true,
+              "detail": "0/0"
+            },
+            {
+              "label": "Substantive content (≥250 words)",
+              "weight": 4,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 words"
+            }
+          ],
+          "reachable": true
+        },
+        {
+          "url": "https://tazbrownstrategies.com/training",
+          "status": 200,
+          "score": 88,
+          "checks": [
+            {
+              "label": "HTTP 200",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "status 200"
+            },
+            {
+              "label": "Title tag",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+            },
+            {
+              "label": "Title length 10–60",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "56 chars"
+            },
+            {
+              "label": "Meta description",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "171 chars"
+            },
+            {
+              "label": "Description length 50–160",
+              "weight": 4,
+              "earned": 1.6,
+              "ok": false,
+              "detail": ""
+            },
+            {
+              "label": "Canonical URL",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "https://tazbrownstrategies.com/"
+            },
+            {
+              "label": "Indexable (not noindex)",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "index, follow"
+            },
+            {
+              "label": "Viewport meta",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "html lang",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "en"
+            },
+            {
+              "label": "og:title",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:description",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:image",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "present"
+            },
+            {
+              "label": "og:url",
+              "weight": 3,
+              "earned": 3,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:type",
+              "weight": 2,
+              "earned": 2,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "twitter:card",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "JSON-LD structured data",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Exactly one <h1>",
+              "weight": 6,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 found"
+            },
+            {
+              "label": "Image alt coverage",
+              "weight": 5,
+              "earned": 5,
+              "ok": true,
+              "detail": "0/0"
+            },
+            {
+              "label": "Substantive content (≥250 words)",
+              "weight": 4,
+              "earned": 0,
+              "ok": false,
+              "detail": "0 words"
+            }
+          ],
+          "reachable": true
+        }
+      ],
+      "siteChecks": [
+        {
+          "label": "robots.txt present",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "label": "robots.txt references sitemap",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "label": "sitemap.xml present",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "avgScore": 88
+    },
+    {
+      "name": "Not Theater",
+      "baseUrl": "https://notheater.app",
+      "pages": [
+        {
+          "url": "https://notheater.app",
+          "status": 200,
+          "score": 95,
+          "checks": [
+            {
+              "label": "HTTP 200",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "status 200"
+            },
+            {
+              "label": "Title tag",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "\"No Theater — Stop Performing. Start Delivering.\""
+            },
+            {
+              "label": "Title length 10–60",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "47 chars"
+            },
+            {
+              "label": "Meta description",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "192 chars"
+            },
+            {
+              "label": "Description length 50–160",
+              "weight": 4,
+              "earned": 1.6,
+              "ok": false,
+              "detail": ""
+            },
+            {
+              "label": "Canonical URL",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "https://notheater.app/"
+            },
+            {
+              "label": "Indexable (not noindex)",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "no robots meta"
+            },
+            {
+              "label": "Viewport meta",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "html lang",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "en"
+            },
+            {
+              "label": "og:title",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:description",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:image",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "present"
+            },
+            {
+              "label": "og:url",
+              "weight": 3,
+              "earned": 3,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:type",
+              "weight": 2,
+              "earned": 2,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "twitter:card",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "JSON-LD structured data",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Exactly one <h1>",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "1 found"
+            },
+            {
+              "label": "Image alt coverage",
+              "weight": 5,
+              "earned": 5,
+              "ok": true,
+              "detail": "0/0"
+            },
+            {
+              "label": "Substantive content (≥250 words)",
+              "weight": 4,
+              "earned": 1.82,
+              "ok": false,
+              "detail": "114 words"
+            }
+          ],
+          "reachable": true
+        }
+      ],
+      "siteChecks": [
+        {
+          "label": "robots.txt present",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "label": "robots.txt references sitemap",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "label": "sitemap.xml present",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "avgScore": 95
+    },
+    {
+      "name": "FlowProof Strategies",
+      "baseUrl": "https://flowproof.tazbrownstrategies.com",
+      "pages": [
+        {
+          "url": "https://flowproof.tazbrownstrategies.com",
+          "status": 200,
+          "score": 100,
+          "checks": [
+            {
+              "label": "HTTP 200",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "status 200"
+            },
+            {
+              "label": "Title tag",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "\"FlowProof — Better delivery decisions, backed by evidence\""
+            },
+            {
+              "label": "Title length 10–60",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "57 chars"
+            },
+            {
+              "label": "Meta description",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "152 chars"
+            },
+            {
+              "label": "Description length 50–160",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Canonical URL",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "https://flowproof.lovable.app/"
+            },
+            {
+              "label": "Indexable (not noindex)",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": "no robots meta"
+            },
+            {
+              "label": "Viewport meta",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "html lang",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "en"
+            },
+            {
+              "label": "og:title",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:description",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:image",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "present"
+            },
+            {
+              "label": "og:url",
+              "weight": 3,
+              "earned": 3,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "og:type",
+              "weight": 2,
+              "earned": 2,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "twitter:card",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "JSON-LD structured data",
+              "weight": 8,
+              "earned": 8,
+              "ok": true,
+              "detail": ""
+            },
+            {
+              "label": "Exactly one <h1>",
+              "weight": 6,
+              "earned": 6,
+              "ok": true,
+              "detail": "1 found"
+            },
+            {
+              "label": "Image alt coverage",
+              "weight": 5,
+              "earned": 5,
+              "ok": true,
+              "detail": "0/0"
+            },
+            {
+              "label": "Substantive content (≥250 words)",
+              "weight": 4,
+              "earned": 4,
+              "ok": true,
+              "detail": "1646 words"
+            }
+          ],
+          "reachable": true
+        }
+      ],
+      "siteChecks": [
+        {
+          "label": "robots.txt present",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "label": "robots.txt references sitemap",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "label": "sitemap.xml present",
+          "weight": 1,
+          "earned": 1,
+          "ok": true,
+          "detail": ""
+        }
+      ],
+      "avgScore": 100
+    }
+  ]
+}
