@@ -1,0 +1,62 @@
+name: SEO Audit
+
+# Automated SEO monitoring for the live sites listed in seo/sites.config.json.
+# GitHub's runners have the outbound network access the dev sandbox lacks, so
+# this is where the audit actually reaches the production sites.
+
+on:
+  schedule:
+    # Every Monday at 08:00 UTC.
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+    inputs:
+      strict:
+        description: "Fail the run if any page scores below the threshold"
+        type: boolean
+        default: false
+  push:
+    branches: [main, master]
+    paths:
+      - "seo/sites.config.json"
+      - "seo/audit.mjs"
+      - ".github/workflows/seo-audit.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: seo-audit
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run SEO audit
+        run: node seo/audit.mjs ${{ (github.event_name == 'workflow_dispatch' && inputs.strict) && '--strict' || '' }}
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-report
+          path: seo/reports/
+
+      - name: Commit report
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add seo/reports/
+          if git diff --cached --quiet; then
+            echo "No report changes to commit."
+          else
+            git commit -m "chore(seo): update audit report [skip ci]"
+            git push
+          fi

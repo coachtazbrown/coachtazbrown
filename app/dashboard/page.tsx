@@ -6,8 +6,13 @@ import {
   clientsByRung,
   rungLabel
 } from "@/lib/practice";
+import { pageMetadata } from "@/lib/seo/site";
 
-export const metadata = { title: "The practice — Taz Brown Strategies" };
+export const metadata = pageMetadata({
+  titleAbsolute: "The practice — Taz Brown Strategies",
+  path: "/dashboard",
+  noindex: true
+});
 
 function dollars(n: number) {
   return n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });

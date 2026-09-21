@@ -1,11 +1,13 @@
-import type { Metadata } from "next";
 import Link from "next/link";
+import { pageMetadata } from "@/lib/seo/site";
 
-export const metadata: Metadata = {
-  title: "Training & Coaching — Galactic Studio by Taz",
+export const metadata = pageMetadata({
+  title: "Training & Coaching",
+  path: "/training",
   description:
-    "Learn the faceless video system from Taz: self-paced training, group coaching, and 1:1 coaching. Pick topics that travel, write hooks that hold, and turn a channel into an offer."
-};
+    "Learn the faceless video system from Taz: self-paced training, group coaching, and 1:1 coaching. Pick topics that travel, write hooks that hold, and turn a channel into an offer.",
+  keywords: ["faceless video training", "YouTube coaching", "content creator coaching", "video hooks"]
+});
 
 const TIERS = [
   {
