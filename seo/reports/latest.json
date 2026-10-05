@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-28",
+  "date": "2026-10-05",
   "minScore": 70,
   "results": [
     {
@@ -9,7 +9,7 @@
         {
           "url": "https://tazbrownstrategies.com",
           "status": 200,
-          "score": 88,
+          "score": 100,
           "checks": [
             {
               "label": "HTTP 200",
@@ -23,27 +23,27 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "56 chars"
+              "detail": "60 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "171 chars"
+              "detail": "148 chars"
             },
             {
               "label": "Description length 50–160",
               "weight": 4,
-              "earned": 1.6,
-              "ok": false,
+              "earned": 4,
+              "ok": true,
               "detail": ""
             },
             {
@@ -126,23 +126,23 @@
             {
               "label": "Exactly one <h1>",
               "weight": 6,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 found"
+              "earned": 6,
+              "ok": true,
+              "detail": "1 found"
             },
             {
               "label": "Image alt coverage",
               "weight": 5,
               "earned": 5,
               "ok": true,
-              "detail": "0/0"
+              "detail": "10/10"
             },
             {
               "label": "Substantive content (≥250 words)",
               "weight": 4,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 words"
+              "earned": 4,
+              "ok": true,
+              "detail": "1788 words"
             }
           ],
           "reachable": true
@@ -150,7 +150,7 @@
         {
           "url": "https://tazbrownstrategies.com/method",
           "status": 200,
-          "score": 88,
+          "score": 100,
           "checks": [
             {
               "label": "HTTP 200",
@@ -164,27 +164,27 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "56 chars"
+              "detail": "60 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "171 chars"
+              "detail": "148 chars"
             },
             {
               "label": "Description length 50–160",
               "weight": 4,
-              "earned": 1.6,
-              "ok": false,
+              "earned": 4,
+              "ok": true,
               "detail": ""
             },
             {
@@ -267,23 +267,23 @@
             {
               "label": "Exactly one <h1>",
               "weight": 6,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 found"
+              "earned": 6,
+              "ok": true,
+              "detail": "1 found"
             },
             {
               "label": "Image alt coverage",
               "weight": 5,
               "earned": 5,
               "ok": true,
-              "detail": "0/0"
+              "detail": "10/10"
             },
             {
               "label": "Substantive content (≥250 words)",
               "weight": 4,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 words"
+              "earned": 4,
+              "ok": true,
+              "detail": "1788 words"
             }
           ],
           "reachable": true
@@ -291,7 +291,7 @@
         {
           "url": "https://tazbrownstrategies.com/pricing",
           "status": 200,
-          "score": 88,
+          "score": 100,
           "checks": [
             {
               "label": "HTTP 200",
@@ -305,27 +305,27 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "56 chars"
+              "detail": "60 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "171 chars"
+              "detail": "148 chars"
             },
             {
               "label": "Description length 50–160",
               "weight": 4,
-              "earned": 1.6,
-              "ok": false,
+              "earned": 4,
+              "ok": true,
               "detail": ""
             },
             {
@@ -408,23 +408,23 @@
             {
               "label": "Exactly one <h1>",
               "weight": 6,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 found"
+              "earned": 6,
+              "ok": true,
+              "detail": "1 found"
             },
             {
               "label": "Image alt coverage",
               "weight": 5,
               "earned": 5,
               "ok": true,
-              "detail": "0/0"
+              "detail": "10/10"
             },
             {
               "label": "Substantive content (≥250 words)",
               "weight": 4,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 words"
+              "earned": 4,
+              "ok": true,
+              "detail": "1788 words"
             }
           ],
           "reachable": true
@@ -432,7 +432,7 @@
         {
           "url": "https://tazbrownstrategies.com/training",
           "status": 200,
-          "score": 88,
+          "score": 100,
           "checks": [
             {
               "label": "HTTP 200",
@@ -446,27 +446,27 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Taz Brown Strategies | Systemic Team & Red Team Coaching\""
+              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "56 chars"
+              "detail": "60 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "171 chars"
+              "detail": "148 chars"
             },
             {
               "label": "Description length 50–160",
               "weight": 4,
-              "earned": 1.6,
-              "ok": false,
+              "earned": 4,
+              "ok": true,
               "detail": ""
             },
             {
@@ -549,23 +549,23 @@
             {
               "label": "Exactly one <h1>",
               "weight": 6,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 found"
+              "earned": 6,
+              "ok": true,
+              "detail": "1 found"
             },
             {
               "label": "Image alt coverage",
               "weight": 5,
               "earned": 5,
               "ok": true,
-              "detail": "0/0"
+              "detail": "10/10"
             },
             {
               "label": "Substantive content (≥250 words)",
               "weight": 4,
-              "earned": 0,
-              "ok": false,
-              "detail": "0 words"
+              "earned": 4,
+              "ok": true,
+              "detail": "1788 words"
             }
           ],
           "reachable": true
@@ -594,7 +594,7 @@
           "detail": ""
         }
       ],
-      "avgScore": 88
+      "avgScore": 100
     },
     {
       "name": "Not Theater",
