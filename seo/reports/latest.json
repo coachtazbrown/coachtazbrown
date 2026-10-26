@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-26",
   "minScore": 70,
   "results": [
     {
@@ -907,7 +907,7 @@
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "1646 words"
+              "detail": "1685 words"
             }
           ],
           "reachable": true
