@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-26",
+  "date": "2026-11-02",
   "minScore": 70,
   "results": [
     {
@@ -9,7 +9,7 @@
         {
           "url": "https://tazbrownstrategies.com",
           "status": 200,
-          "score": 100,
+          "score": 98,
           "checks": [
             {
               "label": "HTTP 200",
@@ -23,21 +23,21 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
+              "detail": "\"Systemic Team &amp; Red Team Coach | Candor &amp; Capacity Coaching\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
-              "earned": 4,
-              "ok": true,
-              "detail": "60 chars"
+              "earned": 1.6,
+              "ok": false,
+              "detail": "67 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "148 chars"
+              "detail": "147 chars"
             },
             {
               "label": "Description length 50–160",
@@ -142,7 +142,7 @@
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "1788 words"
+              "detail": "2073 words"
             }
           ],
           "reachable": true
@@ -150,7 +150,7 @@
         {
           "url": "https://tazbrownstrategies.com/method",
           "status": 200,
-          "score": 100,
+          "score": 98,
           "checks": [
             {
               "label": "HTTP 200",
@@ -164,21 +164,21 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
+              "detail": "\"Systemic Team &amp; Red Team Coach | Candor &amp; Capacity Coaching\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
-              "earned": 4,
-              "ok": true,
-              "detail": "60 chars"
+              "earned": 1.6,
+              "ok": false,
+              "detail": "67 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "148 chars"
+              "detail": "147 chars"
             },
             {
               "label": "Description length 50–160",
@@ -283,7 +283,7 @@
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "1788 words"
+              "detail": "2073 words"
             }
           ],
           "reachable": true
@@ -291,7 +291,7 @@
         {
           "url": "https://tazbrownstrategies.com/pricing",
           "status": 200,
-          "score": 100,
+          "score": 98,
           "checks": [
             {
               "label": "HTTP 200",
@@ -305,21 +305,21 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
+              "detail": "\"Systemic Team &amp; Red Team Coach | Candor &amp; Capacity Coaching\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
-              "earned": 4,
-              "ok": true,
-              "detail": "60 chars"
+              "earned": 1.6,
+              "ok": false,
+              "detail": "67 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "148 chars"
+              "detail": "147 chars"
             },
             {
               "label": "Description length 50–160",
@@ -424,7 +424,7 @@
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "1788 words"
+              "detail": "2073 words"
             }
           ],
           "reachable": true
@@ -432,7 +432,7 @@
         {
           "url": "https://tazbrownstrategies.com/training",
           "status": 200,
-          "score": 100,
+          "score": 98,
           "checks": [
             {
               "label": "HTTP 200",
@@ -446,21 +446,21 @@
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "\"Systemic Team &amp; Red Team Coaching | Taz Brown Strategies\""
+              "detail": "\"Systemic Team &amp; Red Team Coach | Candor &amp; Capacity Coaching\""
             },
             {
               "label": "Title length 10–60",
               "weight": 4,
-              "earned": 4,
-              "ok": true,
-              "detail": "60 chars"
+              "earned": 1.6,
+              "ok": false,
+              "detail": "67 chars"
             },
             {
               "label": "Meta description",
               "weight": 8,
               "earned": 8,
               "ok": true,
-              "detail": "148 chars"
+              "detail": "147 chars"
             },
             {
               "label": "Description length 50–160",
@@ -565,7 +565,7 @@
               "weight": 4,
               "earned": 4,
               "ok": true,
-              "detail": "1788 words"
+              "detail": "2073 words"
             }
           ],
           "reachable": true
@@ -594,7 +594,7 @@
           "detail": ""
         }
       ],
-      "avgScore": 100
+      "avgScore": 98
     },
     {
       "name": "Not Theater",
